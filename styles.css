@@ -60,6 +60,7 @@ a:hover { text-decoration: underline; }
 .nav nav a:hover { color: var(--text); text-decoration: none; }
 .nav nav a.btn-primary, .nav nav a.btn-primary:hover { color: #04201c; }
 @media (max-width: 760px) { .nav nav a:not(.btn) { display: none; } }
+@media (max-width: 360px) { .nav .wrap { gap: 12px; } .nav .btn { padding: 10px 14px; font-size: 14px; } }
 
 .btn { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 700; font-size: 15px; border: 1px solid transparent; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s; }
 .btn:hover { text-decoration: none; transform: translateY(-2px); }
@@ -180,7 +181,7 @@ h2 { font-size: clamp(36px, 5.2vw, 68px); letter-spacing: -0.04em; line-height: 
 
 /* ---------- bento ---------- */
 .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 56px; perspective: 1200px; }
-.tile { --mx: 50%; --my: 50%; position: relative; grid-column: span 2; padding: 26px; border-radius: var(--radius); background: linear-gradient(160deg, rgba(23, 34, 53, 0.9), rgba(13, 20, 33, 0.9)); border: 1px solid var(--border); overflow: hidden; transform-style: preserve-3d; transition: transform 0.5s var(--ease), border-color 0.3s; min-height: 210px; }
+.tile { --mx: 50%; --my: 50%; position: relative; grid-column: span 2; padding: 26px; border-radius: var(--radius); background: linear-gradient(160deg, rgba(23, 34, 53, 0.9), rgba(13, 20, 33, 0.9)); border: 1px solid var(--border); overflow: hidden; transform-style: preserve-3d; transition: border-color 0.3s; min-height: 210px; }
 .tile::before { content: ''; position: absolute; inset: 0; background: radial-gradient(420px circle at var(--mx) var(--my), rgba(45, 212, 191, 0.14), transparent 45%); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
 .tile:hover { border-color: rgba(94, 234, 212, 0.35); }
 .tile:hover::before { opacity: 1; }
@@ -188,7 +189,7 @@ h2 { font-size: clamp(36px, 5.2vw, 68px); letter-spacing: -0.04em; line-height: 
 .tile .emo { font-size: 30px; display: inline-block; }
 .tile h3 { margin: 16px 0 8px; font-size: 21px; letter-spacing: -0.02em; }
 .tile p { margin: 0; color: var(--text-2); font-size: 15px; }
-.tile .mini { position: absolute; right: 52px; top: 34px; width: 140px; border-radius: 22px; transform: rotate(6deg); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08); transition: transform 0.6s var(--ease); -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
+.tile .mini { position: absolute; right: 52px; top: 34px; width: 140px; height: auto; border-radius: 22px; transform: rotate(6deg); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08); transition: transform 0.6s var(--ease); -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
 .tile:hover .mini { transform: rotate(2deg) translateY(-10px) scale(1.03); }
 .tile.has-mini { padding-right: 220px; min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end; }
 @media (max-width: 1000px) { .bento { grid-template-columns: repeat(2, 1fr); } .tile, .tile.wide { grid-column: span 1; } .tile.has-mini { padding-right: 26px; padding-top: 250px; justify-content: flex-start; } .tile .mini { width: 120px; top: 22px; right: 22px; } }
@@ -204,7 +205,8 @@ h2 { font-size: clamp(36px, 5.2vw, 68px); letter-spacing: -0.04em; line-height: 
 .numbers div { padding: 28px; border-radius: var(--radius); border: 1px solid var(--border); background: rgba(17, 26, 41, 0.6); }
 .numbers b { display: block; font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
 .numbers span { color: var(--text-2); }
-@media (max-width: 800px) { .numbers { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 800px) { .numbers { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media (max-width: 400px) { .numbers div { padding: 20px 18px; } .numbers b { font-size: 34px; } }
 
 /* ---------- faq ---------- */
 .faq { max-width: 860px; margin: 48px auto 0; }
@@ -255,3 +257,4 @@ footer a { color: var(--text-2); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
+.tile .emo.rupee { font-weight: 800; color: var(--mint); line-height: 1; }

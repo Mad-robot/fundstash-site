@@ -1,0 +1,9 @@
+// Cloudflare Workers static assets. Pages ignores this file (no pages_build_output_dir).
+{
+  "name": "fundstash-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page"
+  }
+}

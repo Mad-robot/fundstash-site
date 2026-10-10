@@ -100,7 +100,7 @@
   var flushing = false;
   function flush() {
     flushing = false;
-    gsap.to(queue.splice(0), { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08, overwrite: true });
+    gsap.to(queue.splice(0), { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', stagger: 0.08, overwrite: true, clearProps: 'transform' });
   }
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -146,9 +146,10 @@
         var y = (e.clientY - r.top) / r.height;
         el.style.setProperty('--mx', x * 100 + '%');
         el.style.setProperty('--my', y * 100 + '%');
-        el.style.transform = 'rotateY(' + ((x - 0.5) * 10).toFixed(2) + 'deg) rotateX(' + ((0.5 - y) * 10).toFixed(2) + 'deg)';
+        // through GSAP so the tilt never fights the reveal tween over `transform`
+        gsap.to(el, { rotateY: (x - 0.5) * 8, rotateX: (0.5 - y) * 8, duration: 0.5, ease: 'power2.out', overwrite: 'auto' });
       });
-      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+      el.addEventListener('pointerleave', function () { gsap.to(el, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' }); });
     });
     var glare = document.querySelector('#story-device .glare');
     if (glare) {
