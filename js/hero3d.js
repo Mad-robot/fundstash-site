@@ -23,7 +23,7 @@ function start() {
     return;
   }
   canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); root.classList.add('no-webgl'); });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); // 1.5 left text on the phone soft on retina screens
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -55,18 +55,38 @@ function start() {
     return t;
   };
 
-  // ---------- phone ----------
-  const W = 0.8, H = 1.66, D = 0.09;
+  // ---------- phone: all screen, a hairline edge, corners matching the screenshots ----------
+  const roundedRect = (w, h, r) => {
+    const s = new THREE.Shape();
+    const x = -w / 2, y = -h / 2;
+    s.moveTo(x + r, y);
+    s.lineTo(x + w - r, y);
+    s.quadraticCurveTo(x + w, y, x + w, y + r);
+    s.lineTo(x + w, y + h - r);
+    s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h);
+    s.quadraticCurveTo(x, y + h, x, y + h - r);
+    s.lineTo(x, y + r);
+    s.quadraticCurveTo(x, y, x + r, y);
+    return s;
+  };
+  const EDGE = 0.012; // the visible rim around the glass
+  const SW = 0.78, SH = SW * (838 / 388); // screenshots are 388 x 838 points
+  const SR = SW * (56 / 388); // and their screen corners are 56 points
+  const W = SW + 2 * EDGE, H = SH + 2 * EDGE, D = 0.08;
+  const BEVEL = 0.012;
+  const bodyGeo = new THREE.ExtrudeGeometry(roundedRect(W - 2 * BEVEL, H - 2 * BEVEL, SR + EDGE - BEVEL), {
+    depth: D - 2 * BEVEL, bevelEnabled: true, bevelThickness: BEVEL, bevelSize: BEVEL, bevelSegments: 3, curveSegments: 16,
+  });
+  bodyGeo.translate(0, 0, -(D - 2 * BEVEL) / 2);
   const phone = new THREE.Group();
-  const body = new THREE.Mesh(
-    new RoundedBoxGeometry(W, H, D, 5, 0.13),
-    new THREE.MeshStandardMaterial({ color: 0x1b2333, metalness: 0.85, roughness: 0.24 })
-  );
+  const body = new THREE.Mesh(bodyGeo, new THREE.MeshStandardMaterial({ color: 0x1b2333, metalness: 0.85, roughness: 0.24 }));
   phone.add(body);
 
-  // two stacked screen planes so screens can cross-fade
-  const SW = 0.742, SH = SW * (1295 / 600);
-  const screenGeo = new THREE.PlaneGeometry(SW, SH);
+  // two stacked screen planes so screens can cross-fade; ShapeGeometry UVs are in shape units, so map them to 0..1
+  const screenGeo = new THREE.ShapeGeometry(roundedRect(SW, SH, SR), 16);
+  const uv = screenGeo.attributes.uv;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / SW + 0.5, uv.getY(i) / SH + 0.5);
   const SCREEN_IDS = ['dashboard', 'transactions', 'budgets', 'lock', 'split'];
   const screenSets = {};
   const screenSet = (light) => (screenSets[light] ||= SCREEN_IDS.map((id) => tex(`/img/screens/${light ? 'light/' : ''}${id}.webp`)));
@@ -79,7 +99,7 @@ function start() {
 
   // glass sheen over the screen
   const sheen = new THREE.Mesh(
-    new THREE.PlaneGeometry(SW, SH),
+    screenGeo,
     new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.04, toneMapped: false })
   );
   sheen.position.z = D / 2 + 0.004;
