@@ -1,4 +1,4 @@
-/* Scroll choreography: Lenis smooth scroll + GSAP ScrollTrigger. Degrades to a static, fully readable page. */
+/* Scroll choreography: native scrolling + GSAP ScrollTrigger. Degrades to a static, fully readable page. */
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -50,23 +50,6 @@
   var gsap = window.gsap;
   var ST = window.ScrollTrigger;
   gsap.registerPlugin(ST);
-
-  // ---- smooth scroll
-  if (!reduce && typeof window.Lenis !== 'undefined') {
-    var lenis = new window.Lenis({ duration: 1.15, smoothWheel: true, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
-    lenis.on('scroll', ST.update);
-    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var id = a.getAttribute('href');
-        if (id.length > 1 && document.querySelector(id)) {
-          e.preventDefault();
-          lenis.scrollTo(id, { offset: -70 });
-        }
-      });
-    });
-  }
 
   // ---- story progress drives the step and the phone's 3D sway
   if (story && steps.length) {

@@ -14,12 +14,12 @@ function start() {
 
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: (window.devicePixelRatio || 1) < 1.5, alpha: true });
   } catch (e) {
     root.classList.add('no-webgl');
     return;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -55,8 +55,8 @@ function start() {
   const W = 0.8, H = 1.66, D = 0.09;
   const phone = new THREE.Group();
   const body = new THREE.Mesh(
-    new RoundedBoxGeometry(W, H, D, 8, 0.13),
-    new THREE.MeshPhysicalMaterial({ color: 0x1b2333, metalness: 0.85, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.15 })
+    new RoundedBoxGeometry(W, H, D, 5, 0.13),
+    new THREE.MeshStandardMaterial({ color: 0x1b2333, metalness: 0.85, roughness: 0.24 })
   );
   phone.add(body);
 
@@ -73,7 +73,7 @@ function start() {
   // glass sheen over the screen
   const sheen = new THREE.Mesh(
     new THREE.PlaneGeometry(SW, SH),
-    new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: 0.06, roughness: 0.05, metalness: 0, clearcoat: 1 })
+    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.04, toneMapped: false })
   );
   sheen.position.z = D / 2 + 0.004;
   phone.add(sheen);
@@ -81,19 +81,19 @@ function start() {
   // back: camera bump + lenses
   const bump = new THREE.Mesh(
     new RoundedBoxGeometry(0.3, 0.3, 0.03, 4, 0.07),
-    new THREE.MeshPhysicalMaterial({ color: 0x232c3d, metalness: 0.9, roughness: 0.2, clearcoat: 1 })
+    new THREE.MeshStandardMaterial({ color: 0x232c3d, metalness: 0.9, roughness: 0.2 })
   );
   bump.position.set(-W / 2 + 0.2, H / 2 - 0.2, -D / 2 - 0.012);
   phone.add(bump);
-  const lensMat = new THREE.MeshPhysicalMaterial({ color: 0x05070c, metalness: 0.4, roughness: 0.05, clearcoat: 1 });
+  const lensMat = new THREE.MeshStandardMaterial({ color: 0x05070c, metalness: 0.4, roughness: 0.08 });
   [[-0.06, 0.06], [0.06, -0.06], [-0.06, -0.06]].forEach(([x, y]) => {
-    const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.03, 32), lensMat);
+    const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.03, 20), lensMat);
     lens.rotation.x = Math.PI / 2;
     lens.position.set(bump.position.x + x, bump.position.y + y, -D / 2 - 0.03);
     phone.add(lens);
   });
   // side buttons
-  const btnMat = new THREE.MeshPhysicalMaterial({ color: 0x2a3446, metalness: 0.9, roughness: 0.3 });
+  const btnMat = new THREE.MeshStandardMaterial({ color: 0x2a3446, metalness: 0.9, roughness: 0.3 });
   [[0.32, 0.2], [0.12, 0.14]].forEach(([y, h]) => {
     const b = new THREE.Mesh(new RoundedBoxGeometry(0.02, h, 0.04, 2, 0.008), btnMat);
     b.position.set(W / 2 + 0.006, y, 0);
@@ -129,8 +129,8 @@ function start() {
     return t;
   }
   const face = coinFace();
-  const coinGeo = new THREE.CylinderGeometry(0.17, 0.17, 0.035, 64);
-  const coinSide = new THREE.MeshPhysicalMaterial({ color: 0x14b8a6, metalness: 1, roughness: 0.22, clearcoat: 1 });
+  const coinGeo = new THREE.CylinderGeometry(0.17, 0.17, 0.035, 36);
+  const coinSide = new THREE.MeshStandardMaterial({ color: 0x14b8a6, metalness: 1, roughness: 0.22 });
   const coinCap = new THREE.MeshStandardMaterial({ map: face, metalness: 0.35, roughness: 0.42, envMapIntensity: 0.6 });
   const coins = [];
   const coinSpots = [
@@ -265,6 +265,7 @@ function start() {
 
   const clock = new THREE.Clock();
   let lastSwap = 0;
+  let shownCanvas = false;
   function frame() {
     requestAnimationFrame(frame);
     if (!visible || document.hidden) return;
@@ -315,16 +316,19 @@ function start() {
     camera.position.y = -pointer.y * 0.1;
     camera.lookAt(0, 0, 0);
     renderer.render(scene, camera);
+    if (!shownCanvas) { shownCanvas = true; canvas.classList.add('ready'); }
   }
 
   if (reduce) {
     // one still frame, no motion
     phone.rotation.set(0.08, -0.38, 0.05);
     renderer.render(scene, camera);
+    canvas.classList.add('ready');
     loader.manager.onLoad = () => renderer.render(scene, camera);
     return;
   }
   frame();
 }
 
-start();
+if (document.readyState === 'complete') setTimeout(start, 0);
+else window.addEventListener('load', () => (window.requestIdleCallback ? requestIdleCallback(start, { timeout: 600 }) : setTimeout(start, 0)));
