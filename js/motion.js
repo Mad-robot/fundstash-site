@@ -108,12 +108,13 @@
   var fan = Array.prototype.slice.call(document.querySelectorAll('#fan .device'));
   if (fan.length) {
     var mid = (fan.length - 1) / 2;
+    var fw = fan[0].offsetWidth || 220;
     fan.forEach(function (d, i) {
       var o = i - mid;
       gsap.fromTo(
         d,
         { rotate: 0, x: 0, y: 120, z: -Math.abs(o) * 60 },
-        { rotate: o * 11, x: o * Math.min(190, window.innerWidth / 6), y: Math.abs(o) * 34, z: -Math.abs(o) * 60, ease: 'none', scrollTrigger: { trigger: '#fan', start: 'top 95%', end: 'top 35%', scrub: 1 } }
+        { rotate: o * 11, x: o * Math.min(fw * 0.82, window.innerWidth / 5.4), y: Math.abs(o) * fw * 0.15, z: -Math.abs(o) * 60, ease: 'none', scrollTrigger: { trigger: '#fan', start: 'top 95%', end: 'top 35%', scrub: 1 } }
       );
       d.style.zIndex = String(10 - Math.abs(Math.round(o)));
     });

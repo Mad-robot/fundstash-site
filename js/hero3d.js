@@ -8,6 +8,7 @@ const root = document.documentElement;
 const canvas = document.getElementById('scene');
 const hero = document.getElementById('hero');
 const reduce = root.classList.contains('reduce');
+const lightQuery = window.matchMedia('(prefers-color-scheme: light)');
 
 function start() {
   if (!canvas || root.classList.contains('no-webgl')) return;
@@ -102,7 +103,7 @@ function start() {
   scene.add(phone);
 
   // ---------- ₹ coins ----------
-  function coinFace() {
+  function coinFace(symbol) {
     const c = document.createElement('canvas');
     c.width = c.height = 256;
     const g = c.getContext('2d');
@@ -123,21 +124,20 @@ function start() {
     g.font = '800 140px Inter, system-ui, sans-serif';
     g.textAlign = 'center';
     g.textBaseline = 'middle';
-    g.fillText('₹', 128, 138);
+    g.fillText(symbol, 128, 138);
     const t = new THREE.CanvasTexture(c);
     t.colorSpace = THREE.SRGBColorSpace;
     return t;
   }
-  const face = coinFace();
+  const faces = ['₹', '$', '€', '£', '¥', '₹'].map((sym) => new THREE.MeshStandardMaterial({ map: coinFace(sym), metalness: 0.35, roughness: 0.42, envMapIntensity: 0.6 }));
   const coinGeo = new THREE.CylinderGeometry(0.17, 0.17, 0.035, 36);
   const coinSide = new THREE.MeshStandardMaterial({ color: 0x14b8a6, metalness: 1, roughness: 0.22 });
-  const coinCap = new THREE.MeshStandardMaterial({ map: face, metalness: 0.35, roughness: 0.42, envMapIntensity: 0.6 });
   const coins = [];
   const coinSpots = [
     [-0.82, 0.9, 0.3], [0.9, -0.62, 0.55], [-0.78, -0.92, -0.2], [0.86, 0.98, -0.3], [0.15, 1.3, -0.7], [-0.15, -1.32, 0.25],
   ];
   coinSpots.forEach((p, i) => {
-    const m = new THREE.Mesh(coinGeo, [coinSide, coinCap, coinCap]);
+    const m = new THREE.Mesh(coinGeo, [coinSide, faces[i], faces[i]]);
     m.position.set(...p);
     m.rotation.set(Math.PI / 2 + (i % 2 ? 0.5 : -0.4), i * 0.7, 0.3 * i);
     m.userData = { base: new THREE.Vector3(...p), speed: 0.4 + (i % 3) * 0.15, phase: i * 1.3, spin: (i % 2 ? 1 : -1) * (0.4 + i * 0.07) };
@@ -147,6 +147,7 @@ function start() {
 
   // ---------- floating transaction cards ----------
   function cardTexture(emoji, title, sub, amount, positive) {
+    const light = lightQuery.matches;
     const c = document.createElement('canvas');
     c.width = 640;
     c.height = 200;
@@ -156,8 +157,8 @@ function start() {
     g.moveTo(r, 0); g.lineTo(640 - r, 0); g.quadraticCurveTo(640, 0, 640, r); g.lineTo(640, 200 - r);
     g.quadraticCurveTo(640, 200, 640 - r, 200); g.lineTo(r, 200); g.quadraticCurveTo(0, 200, 0, 200 - r); g.lineTo(0, r); g.quadraticCurveTo(0, 0, r, 0);
     const bg = g.createLinearGradient(0, 0, 640, 200);
-    bg.addColorStop(0, 'rgba(30,42,62,0.92)');
-    bg.addColorStop(1, 'rgba(14,21,34,0.92)');
+    bg.addColorStop(0, light ? 'rgba(255,255,255,0.97)' : 'rgba(30,42,62,0.92)');
+    bg.addColorStop(1, light ? 'rgba(241,245,249,0.97)' : 'rgba(14,21,34,0.92)');
     g.fillStyle = bg;
     g.fill();
     g.strokeStyle = 'rgba(94,234,212,0.45)';
@@ -172,14 +173,14 @@ function start() {
     g.textBaseline = 'middle';
     g.fillText(emoji, 100, 104);
     g.textAlign = 'left';
-    g.fillStyle = '#f8fafc';
+    g.fillStyle = light ? '#0f172a' : '#f8fafc';
     g.font = '700 44px Inter, system-ui, sans-serif';
     g.fillText(title, 178, 82);
-    g.fillStyle = '#94a3b8';
+    g.fillStyle = light ? '#64748b' : '#94a3b8';
     g.font = '500 30px Inter, system-ui, sans-serif';
     g.fillText(sub, 178, 132);
     g.textAlign = 'right';
-    g.fillStyle = positive ? '#34d399' : '#f87171';
+    g.fillStyle = positive ? (light ? '#059669' : '#34d399') : (light ? '#dc2626' : '#f87171');
     g.font = '800 46px Inter, system-ui, sans-serif';
     g.fillText(amount, 604, 104);
     const t = new THREE.CanvasTexture(c);
@@ -188,11 +189,12 @@ function start() {
     return t;
   }
   const cardGeo = new THREE.PlaneGeometry(0.95, 0.297);
-  const cards = [
-    ['🍽️', 'Swiggy', 'from HDFC SMS', '−₹450', false, [-0.92, 0.28, 0.65]],
-    ['💰', 'Salary', 'Acme Corp', '+₹85,000', true, [0.8, 0.5, 0.55]],
-    ['🛒', 'DMart', 'receipt scan', '−₹1,284', false, [0.78, -1.08, 0.15]],
-  ].map(([e, t, s, a, pos, p], i) => {
+  const cardData = [
+    ['🍽️', 'Swiggy', 'HDFC SMS', '−₹450', false, [-0.92, 0.28, 0.65]],
+    ['💰', 'Salary', 'Acme GmbH', '+€3,400', true, [0.8, 0.5, 0.55]],
+    ['☕', 'Blue Bottle', 'card alert', '−$6.50', false, [0.78, -1.08, 0.15]],
+  ];
+  const cards = cardData.map(([e, t, s, a, pos, p], i) => {
     const m = new THREE.Mesh(cardGeo, new THREE.MeshBasicMaterial({ map: cardTexture(e, t, s, a, pos), transparent: true, toneMapped: false, depthWrite: false }));
     m.position.set(...p);
     m.userData = { base: new THREE.Vector3(...p), phase: i * 2.1 };
@@ -216,6 +218,24 @@ function start() {
   const dots = new THREE.Points(pg, new THREE.PointsMaterial({ color: 0x5eead4, size: 0.022, transparent: true, opacity: 0.65, blending: THREE.AdditiveBlending, depthWrite: false }));
   scene.add(dots);
 
+  // additive glow vanishes on a white page, so light mode uses darker, normally blended dots
+  function applyTheme() {
+    const light = lightQuery.matches;
+    dots.material.color.set(light ? 0x0d9488 : 0x5eead4);
+    dots.material.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
+    dots.material.opacity = light ? 0.45 : 0.65;
+    dots.material.needsUpdate = true;
+    cards.forEach((m, i) => {
+      const [e, t, s, a, pos] = cardData[i];
+      m.material.map.dispose();
+      m.material.map = cardTexture(e, t, s, a, pos);
+      m.material.needsUpdate = true;
+    });
+    if (reduce) renderer.render(scene, camera);
+  }
+  applyTheme();
+  lightQuery.addEventListener('change', applyTheme);
+
   // ---------- layout ----------
   const rig = new THREE.Group(); // everything except particles follows the layout
   [phone, ...coins, ...cards].forEach((o) => rig.add(o));
@@ -231,7 +251,7 @@ function start() {
     // desktop: phone sits right of the headline; mobile: below it
     // half the visible width at z=0 is tan(16°)·6·aspect ≈ 1.72·aspect; put the phone at ~70% across
     rig.position.set(narrow ? 0 : Math.min(1.9, 0.69 * camera.aspect), narrow ? -1.2 : -0.05, 0);
-    rig.scale.setScalar(narrow ? Math.min(0.8, 0.55 * camera.aspect + 0.3) : 1);
+    rig.scale.setScalar(narrow ? Math.min(0.72, 0.5 * camera.aspect + 0.28) : Math.min(1, 0.5 + 0.28 * camera.aspect));
     camera.updateProjectionMatrix();
   }
   window.addEventListener('resize', resize);

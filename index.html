@@ -6,7 +6,8 @@
   <title>Fundstash — the private expense tracker that runs on your phone</title>
   <meta name="description" content="Fundstash turns bank SMS, receipts and voice into a private ledger with on-device AI. No account, no servers, no ads. Your money data never leaves your phone. For Android and iPhone.">
   <link rel="canonical" href="https://fundstash.app/">
-  <meta name="theme-color" content="#05080F">
+  <meta name="theme-color" content="#05080F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/favicon.png">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -98,8 +99,8 @@
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Bank SMS auto-sync</span><span>Receipt OCR on device</span><span>Voice &amp; “chai 40” entry</span><span>Gemini Nano · Apple Intelligence</span><span>Ask Fundstash chat</span><span>Budgets that suggest themselves</span><span>Split bills by link</span><span>Debts &amp; EMIs</span><span>Home &amp; Lock Screen widgets</span><span>Encrypted backups</span><span>UPI · lakh &amp; crore</span>
-        <span>Bank SMS auto-sync</span><span>Receipt OCR on device</span><span>Voice &amp; “chai 40” entry</span><span>Gemini Nano · Apple Intelligence</span><span>Ask Fundstash chat</span><span>Budgets that suggest themselves</span><span>Split bills by link</span><span>Debts &amp; EMIs</span><span>Home &amp; Lock Screen widgets</span><span>Encrypted backups</span><span>UPI · lakh &amp; crore</span>
+        <span>Bank SMS auto-sync</span><span>Receipt OCR on device</span><span>Voice &amp; “chai 40” entry</span><span>Gemini Nano · Apple Intelligence</span><span>Ask Fundstash chat</span><span>Budgets that suggest themselves</span><span>Split bills by link</span><span>Debts &amp; EMIs</span><span>Home &amp; Lock Screen widgets</span><span>Encrypted backups</span><span>₹ $ € £ ¥ and 100+ more</span>
+        <span>Bank SMS auto-sync</span><span>Receipt OCR on device</span><span>Voice &amp; “chai 40” entry</span><span>Gemini Nano · Apple Intelligence</span><span>Ask Fundstash chat</span><span>Budgets that suggest themselves</span><span>Split bills by link</span><span>Debts &amp; EMIs</span><span>Home &amp; Lock Screen widgets</span><span>Encrypted backups</span><span>₹ $ € £ ¥ and 100+ more</span>
       </div>
     </div>
 
@@ -114,7 +115,7 @@
       <div class="story-scroll" id="story">
         <div class="story-stage">
           <div class="story-text">
-            <article class="step on" data-screen="transactions" data-chips='["+₹450 Swiggy|from HDFC SMS","OTP 482193|ignored","₹299 recharge offer|skipped"]'>
+            <article class="step on" data-screen="transactions" data-chips='["−₹450 Swiggy|HDFC SMS","−$12.40 Uber|card alert","OTP 482193|ignored"]'>
               <div class="num">01 — BANK SMS</div>
               <h3>Bank texts become <span class="grad">transactions.</span></h3>
               <p>On Android, debits and credits log themselves the moment they arrive. On iPhone, one Shortcuts automation does it. Offers, recharge ads and OTPs never make it in.</p>
@@ -221,8 +222,8 @@
           <article class="tile" data-reveal data-tilt><span class="ico"><svg><use href="#i-chat"/></svg></span><h3>Ask Fundstash</h3><p>“Top payees last month?” Answers come from your own data, on the phone.</p></article>
           <article class="tile" data-reveal data-tilt><span class="ico"><svg><use href="#i-card"/></svg></span><h3>Cards recognised</h3><p>Accounts and cards are picked up from alerts and linked automatically.</p></article>
           <article class="tile" data-reveal data-tilt><span class="ico"><svg><use href="#i-lock"/></svg></span><h3>Encrypted backups</h3><p>One password-locked file with everything, settings included.</p></article>
-          <article class="tile" data-reveal data-tilt><span class="ico"><svg><use href="#i-globe"/></svg></span><h3>100+ currencies</h3><p>One base currency, rates that work offline.</p></article>
-          <article class="tile" data-reveal data-tilt><span class="ico"><svg><use href="#i-rupee"/></svg></span><h3>Made for India</h3><p>UPI, lakh &amp; crore, ₹ first. Works everywhere else too.</p></article>
+          <article class="tile cur" data-reveal data-tilt><span class="ico"><svg><use href="#i-globe"/></svg></span><h3>Any currency, written your way</h3><p>107 currencies with rates that work offline. Lakh and crore for rupees, 1,234.56 for dollars, euros and pounds. Bank alerts in $, €, £, ₹ and 30 more are understood.</p>
+            <div class="coins" aria-label="Some supported currencies"><span>₹ INR</span><span>$ USD</span><span>€ EUR</span><span>£ GBP</span><span>¥ JPY</span><span>د.إ AED</span><span>S$ SGD</span><span>A$ AUD</span><span>C$ CAD</span><span>+98</span></div></article>
         </div>
       </div>
     </section>
@@ -277,6 +278,7 @@
           <details data-reveal><summary>Do I need an account?</summary><p>No. There is no sign-up and no login. Everything is stored in an encrypted database on your phone.</p></details>
           <details data-reveal><summary>What if I lose or change my phone?</summary><p>Export an encrypted backup from Settings. It contains everything, including your settings, and only opens with your password. Restore it on the new phone.</p></details>
           <details data-reveal><summary>Which phones get the on-device AI?</summary><p>iPhones with Apple Intelligence and Android phones with Gemini Nano use the built-in model. Any other phone can download a small open model (about 400 MB) once. The app works fully without AI too.</p></details>
+          <details data-reveal><summary>Does it work outside India?</summary><p>Yes. Pick any of 107 currencies as your base and record spending in any of them; exchange rates work offline and refresh only when you ask. Bank-alert import reads amounts in dollars, euros, pounds, rupees and 30 more currencies, and is most thoroughly tuned for Indian banks today. Receipts, voice entry, budgets and the assistant work in any currency.</p></details>
           <details data-reveal><summary>Is it free?</summary><p>Yes, free for personal use. There are no ads and your data is never sold, because we never receive it.</p></details>
         </div>
       </div>
