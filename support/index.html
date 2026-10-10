@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — Fundstash</title>
+  <meta name="description" content="Help with Fundstash: bank SMS on Android and iPhone, backups, on-device AI, widgets and contact.">
+  <link rel="canonical" href="https://fundstash.app/support/">
+  <meta name="theme-color" content="#0B1220">
+  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="nav solid">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/img/icon.png" alt="" width="32" height="32">Fundstash</a>
+      <nav aria-label="Main"><a href="/privacy/">Privacy</a><a class="btn btn-ghost" href="/">Home</a></nav>
+    </div>
+  </header>
+  <main class="doc">
+    <h1>Support</h1>
+    <p>Write to <a href="mailto:support@fundstash.app">support@fundstash.app</a>. If an SMS was read wrongly, paste the message with the account numbers masked. Fundstash never sends us your data, so we can only see what you choose to share.</p>
+
+    <h2 id="bank-sms-on-iphone">Bank SMS on iPhone</h2>
+    <p>iPhone apps cannot read messages, so a Shortcuts automation hands each text to Fundstash. On iOS 27, open <a href="/shortcut">the ready-made automation</a> on your iPhone and tap “Add Shortcut”. Then open it and check that Automation is on and Confirm Before Run is off.</p>
+    <p>To build it by hand:</p>
+    <ol>
+      <li>Shortcuts → Library → Automation → +. If “Describe a shortcut” appears, tap Edit. Choose <strong>Message</strong>.</li>
+      <li>Tap the blue word “Sender”, change it to <strong>Message</strong>, choose <strong>contains</strong> and type a single space.</li>
+      <li>Tap the arrow next to “where” and turn off <strong>Confirm Before Run</strong>.</li>
+      <li>Add the action <strong>Import bank SMS</strong> (Fundstash). Set Message text to Message → <strong>Content</strong> and Sender to Message → <strong>Sender</strong>.</li>
+    </ol>
+    <p>iOS shows a small banner when an automation runs. To hide it: Settings → Notifications → Shortcuts → turn off Allow Notifications (or use Screen Time → See All App &amp; Website Activity → Notifications → Shortcuts).</p>
+
+    <h2 id="bank-sms-on-android">Bank SMS on Android</h2>
+    <p>Allow SMS access when asked, or in Settings → Apps → Fundstash → Permissions. Turn on Auto-Sync in Fundstash Settings. Only completed debits and credits are recorded; offers, recharge reminders, OTPs and failed payments are skipped.</p>
+
+    <h2>An entry looks wrong</h2>
+    <p>Open it: the original message is shown under the form. Fix the amount, payee or category and save; your edit is final. If on-device AI is on, new entries show a small spinner while the AI double-checks them. Messages it decided were not payments are listed in Settings → Dismissed by AI, where you can restore them.</p>
+
+    <h2 id="backups">Backups and moving to a new phone</h2>
+    <p>Settings → Export full backup creates a password-encrypted file with everything, including your settings. On the new phone, install Fundstash, then Settings → Import and pick the file. Keep the password: without it nobody can open the backup.</p>
+
+    <h2>On-device AI</h2>
+    <p>Phones with Apple Intelligence or Gemini Nano use it automatically. Others can download a small open model (about 400 MB) in Settings → On-device AI. It runs offline once downloaded and can be removed at any time.</p>
+
+    <h2>Widgets</h2>
+    <p>Long-press your home screen (or Lock Screen on iPhone), tap +, search for Fundstash and add “Spending”. Amounts are hidden while Discreet mode is on.</p>
+  </main>
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Fundstash</span>
+      <nav aria-label="Footer"><a href="/">Home</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

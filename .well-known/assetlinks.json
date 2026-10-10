@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.fundstash.app",
+      "sha256_cert_fingerprints": ["05:BA:47:E7:59:8F:EA:2B:9C:B8:AF:3B:D1:8D:D3:0C:3F:93:D4:26:E1:AF:62:21:54:18:7C:C6:AD:1F:FC:68"]
+    }
+  }
+]

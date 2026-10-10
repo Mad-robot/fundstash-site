@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fundstash — the private expense tracker that runs on your phone</title>
+  <meta name="description" content="Fundstash turns bank SMS, receipts and voice into a private ledger with on-device AI. No account, no servers, no ads. Your money data never leaves your phone. For Android and iPhone.">
+  <link rel="canonical" href="https://fundstash.app/">
+  <meta name="theme-color" content="#05080F">
+  <link rel="icon" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="preload" href="/img/screens/dashboard.webp" as="image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fundstash.app/">
+  <meta property="og:title" content="Fundstash — your funds, stashed locally">
+  <meta property="og:description" content="Bank SMS, receipts and voice turned into a private ledger by on-device AI. No account. No servers. No ads.">
+  <meta property="og:image" content="https://fundstash.app/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/js/boot.js"></script>
+  <script src="/vendor/gsap.min.js" defer></script>
+  <script src="/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/vendor/lenis.min.js" defer></script>
+  <script src="/js/motion.js" defer></script>
+  <script type="module" src="/js/hero3d.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Fundstash","applicationCategory":"FinanceApplication","operatingSystem":"Android, iOS","description":"Private, on-device expense tracker: bank SMS, receipts, voice and on-device AI. No account, no servers.","url":"https://fundstash.app/"}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/img/icon.png" alt="" width="34" height="34">Fundstash</a>
+      <nav aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="#get">Get the app</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <div class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <canvas id="scene" aria-label="A 3D phone showing the Fundstash app, surrounded by floating coins and transactions"></canvas>
+      <img class="hero-fallback" src="/img/screens/dashboard.webp" alt="" width="600" height="1295">
+      <div class="wrap">
+        <div class="hero-copy">
+          <div class="eyebrow" data-hero>Private by design</div>
+          <h1>
+            <span class="line"><span>Your money,</span></span>
+            <span class="line"><span>tracked on your phone.</span></span>
+            <span class="line"><span class="grad">Not on our servers.</span></span>
+          </h1>
+          <p class="lead" data-hero>Bank SMS, receipts and a quick “chai 40” become a clean ledger, using AI that runs on the phone itself. No account, no cloud, no ads.</p>
+          <div class="cta" id="get" data-hero>
+            <a class="store" href="mailto:hello@fundstash.app?subject=Tell%20me%20when%20Fundstash%20is%20on%20the%20App%20Store" aria-label="iPhone app coming soon to the App Store">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.27 1.86-3.36 1.94-3.41-1.06-1.55-2.7-1.76-3.28-1.78-1.4-.14-2.73.82-3.44.82-.71 0-1.8-.8-2.96-.78-1.52.02-2.93.89-3.71 2.25-1.58 2.74-.4 6.8 1.14 9.02.75 1.09 1.65 2.31 2.82 2.27 1.13-.05 1.56-.73 2.93-.73 1.36 0 1.75.73 2.95.71 1.22-.02 1.99-1.11 2.73-2.2.86-1.26 1.21-2.48 1.23-2.55-.03-.01-2.36-.9-2.35-3.62zM14.12 5.94c.62-.76 1.04-1.8.93-2.85-.9.04-1.98.6-2.62 1.35-.58.66-1.08 1.73-.94 2.75 1 .08 2.02-.51 2.63-1.25z"/></svg>
+              <span><small>Coming soon to the</small><strong>App Store</strong></span>
+            </a>
+            <a class="store" href="mailto:hello@fundstash.app?subject=Tell%20me%20when%20Fundstash%20is%20on%20Google%20Play" aria-label="Android app coming soon to Google Play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2dd4bf" d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1z"/><path fill="#5eead4" d="m16.8 8.6-3.4 3.4-9.8-9.7c.2-.1.5-.2.8-.1l12.4 6.4z"/><path fill="#0d9488" d="M16.8 15.4 4.4 21.8c-.3.1-.6 0-.8-.1l9.8-9.7 3.4 3.4z"/><path fill="#99f6e4" d="m20.4 12-3.6 3.4-3.4-3.4 3.4-3.4 3 1.6c1 .5 1 1.3.6 1.8z"/></svg>
+              <span><small>Coming soon on</small><strong>Google Play</strong></span>
+            </a>
+          </div>
+          <div class="pills" data-hero>
+            <span class="pill"><i></i>No account</span>
+            <span class="pill"><i></i>No servers</span>
+            <span class="pill"><i></i>AES-256 on device</span>
+            <span class="pill"><i></i>No ads or trackers</span>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"></div>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Bank SMS auto-sync</span><span>Receipt OCR on device</span><span>Voice &amp; “chai 40” entry</span><span>Gemini Nano · Apple Intelligence</span><span>Ask Fundstash chat</span><span>Budgets that suggest themselves</span><span>Split bills by link</span><span>Debts &amp; EMIs</span><span>Home &amp; Lock Screen widgets</span><span>Encrypted backups</span><span>UPI · lakh &amp; crore</span>
+        <span>Bank SMS auto-sync</span><span>Receipt OCR on device</span><span>Voice &amp; “chai 40” entry</span><span>Gemini Nano · Apple Intelligence</span><span>Ask Fundstash chat</span><span>Budgets that suggest themselves</span><span>Split bills by link</span><span>Debts &amp; EMIs</span><span>Home &amp; Lock Screen widgets</span><span>Encrypted backups</span><span>UPI · lakh &amp; crore</span>
+      </div>
+    </div>
+
+    <!-- ================= STORY (pinned) ================= -->
+    <section class="story" id="how">
+      <div class="wrap story-head">
+        <div class="eyebrow" data-reveal>How it works</div>
+        <h2 data-reveal>Tracking that happens<br><span class="grad">by itself.</span></h2>
+        <p class="section-lead" data-reveal>Every spend lands in your ledger without typing, and every number is worked out on the phone.</p>
+      </div>
+
+      <div class="story-scroll" id="story">
+        <div class="story-stage">
+          <div class="story-text">
+            <article class="step on" data-screen="transactions" data-chips='["+₹450 Swiggy|from HDFC SMS","OTP 482193|ignored","₹299 recharge offer|skipped"]'>
+              <div class="num">01 — BANK SMS</div>
+              <h3>Bank texts become <span class="grad">transactions.</span></h3>
+              <p>On Android, debits and credits log themselves the moment they arrive. On iPhone, one Shortcuts automation does it. Offers, recharge ads and OTPs never make it in.</p>
+            </article>
+            <article class="step" data-screen="receipt" data-chips='["DMart · ₹1,284|read on device","96% confidence|decision model","Groceries|auto-category"]'>
+              <div class="num">02 — RECEIPTS</div>
+              <h3>Snap a receipt. <span class="grad">Done.</span></h3>
+              <p>Google ML Kit, or Apple Vision on iPhone, reads the bill on the phone. A decision model picks the merchant, total and category.</p>
+            </article>
+            <article class="step" data-screen="voice" data-chips='["“gold jewellery 2000”|you said","₹2,000 · Shopping|understood","Today|date filled"]'>
+              <div class="num">03 — VOICE</div>
+              <h3>Just <span class="grad">say it.</span></h3>
+              <p>“Chai 40 yesterday”, “salary 85k from Acme”. Amount, payee, category and date fill themselves.</p>
+            </article>
+            <article class="step" data-screen="ai" data-chips='["Gemini Nano|or Apple Intelligence","Qwen3 · 400 MB|download once","0 bytes|sent anywhere"]'>
+              <div class="num">04 — ON-DEVICE AI</div>
+              <h3>AI that never <span class="grad">leaves your phone.</span></h3>
+              <p>It double-checks every imported message, sorts categories and answers “how much on Swiggy last month?”. Built-in AI where your phone has it, a small open model where it doesn’t.</p>
+            </article>
+            <article class="step" data-screen="budgets" data-chips='["Food · 68%|on track","Shopping · 92%|near limit","Suggested ₹9,400|from last month"]'>
+              <div class="num">05 — BUDGETS</div>
+              <h3>Know before <span class="grad">you overspend.</span></h3>
+              <p>Category limits suggested from last month’s spending, with local alerts at 80% and 100%. No push server involved.</p>
+            </article>
+            <article class="step" data-screen="lock" data-chips='["₹730 safe today|Lock Screen","₹18K this month|at a glance","Hidden|in Discreet mode"]'>
+              <div class="num">06 — WIDGETS</div>
+              <h3>Your budget, <span class="grad">at a glance.</span></h3>
+              <p>Home Screen and Lock Screen widgets on iPhone, home screen widgets on Android. Amounts disappear when Discreet mode is on.</p>
+            </article>
+            <div class="progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="story-phone">
+            <div class="device" id="story-device">
+              <div class="screen">
+                <img class="on" data-id="transactions" src="/img/screens/transactions.webp" alt="Transactions read from bank SMS" width="600" height="1295">
+                <img data-id="receipt" src="/img/screens/receipt.webp" alt="A receipt scanned into merchant, amount and category" width="600" height="1295" loading="lazy">
+                <img data-id="voice" src="/img/screens/voice.webp" alt="Voice entry filling in a transaction" width="600" height="1295" loading="lazy">
+                <img data-id="ai" src="/img/screens/ai.webp" alt="On-device AI settings" width="600" height="1295" loading="lazy">
+                <img data-id="budgets" src="/img/screens/budgets.webp" alt="Budgets with progress bars" width="600" height="1295" loading="lazy">
+                <img data-id="lock" src="/img/screens/lock.webp" alt="Lock Screen spending widgets" width="600" height="1295" loading="lazy">
+              </div>
+              <div class="glare"></div>
+            </div>
+            <div class="chip c1"></div><div class="chip c2"></div><div class="chip c3"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap story-mobile">
+        <article data-reveal><div class="device"><div class="screen"><img src="/img/screens/transactions.webp" alt="Transactions read from bank SMS" width="600" height="1295" loading="lazy"></div></div><div><div class="eyebrow">Bank SMS</div><h3>Bank texts become <span class="grad">transactions.</span></h3><p>Debits and credits log themselves. Offers, recharge ads and OTPs never make it in.</p></div></article>
+        <article data-reveal><div class="device"><div class="screen"><img src="/img/screens/receipt.webp" alt="A receipt scanned on the phone" width="600" height="1295" loading="lazy"></div></div><div><div class="eyebrow">Receipts</div><h3>Snap a receipt. <span class="grad">Done.</span></h3><p>Text is read on the phone; merchant, total and category fill in.</p></div></article>
+        <article data-reveal><div class="device"><div class="screen"><img src="/img/screens/voice.webp" alt="Voice entry" width="600" height="1295" loading="lazy"></div></div><div><div class="eyebrow">Voice</div><h3>Just <span class="grad">say it.</span></h3><p>“Chai 40 yesterday.” Amount, payee, category and date fill themselves.</p></div></article>
+        <article data-reveal><div class="device"><div class="screen"><img src="/img/screens/ai.webp" alt="On-device AI settings" width="600" height="1295" loading="lazy"></div></div><div><div class="eyebrow">On-device AI</div><h3>AI that never <span class="grad">leaves your phone.</span></h3><p>Built-in AI where your phone has it, a small open model where it doesn’t.</p></div></article>
+        <article data-reveal><div class="device"><div class="screen"><img src="/img/screens/budgets.webp" alt="Budgets" width="600" height="1295" loading="lazy"></div></div><div><div class="eyebrow">Budgets</div><h3>Know before <span class="grad">you overspend.</span></h3><p>Limits suggested from last month, alerts at 80% and 100%.</p></div></article>
+        <article data-reveal><div class="device"><div class="screen"><img src="/img/screens/lock.webp" alt="Lock Screen widgets" width="600" height="1295" loading="lazy"></div></div><div><div class="eyebrow">Widgets</div><h3>Your budget, <span class="grad">at a glance.</span></h3><p>Home and Lock Screen widgets that hide amounts in Discreet mode.</p></div></article>
+      </div>
+    </section>
+
+    <!-- ================= PRIVACY ================= -->
+    <section id="privacy">
+      <div class="wrap vault">
+        <div class="shield-wrap" aria-hidden="true">
+          <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+          <svg class="shield" viewBox="0 0 200 230">
+            <defs>
+              <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#0d9488"/></linearGradient>
+              <linearGradient id="sh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            </defs>
+            <path d="M100 6 186 38v70c0 58-38 100-86 116C52 208 14 166 14 108V38z" fill="url(#sg)"/>
+            <path d="M100 6 186 38v70c0 20-4 38-12 54L26 60V38z" fill="url(#sh)"/>
+            <g fill="#062a26">
+              <ellipse cx="100" cy="88" rx="40" ry="13"/>
+              <path d="M60 88v18c0 7 18 13 40 13s40-6 40-13V88c0 7-18 13-40 13s-40-6-40-13z" opacity=".85"/>
+              <path d="M60 114v18c0 7 18 13 40 13s40-6 40-13v-18c0 7-18 13-40 13s-40-6-40-13z" opacity=".7"/>
+              <path d="M60 140v18c0 7 18 13 40 13s40-6 40-13v-18c0 7-18 13-40 13s-40-6-40-13z" opacity=".55"/>
+            </g>
+          </svg>
+        </div>
+        <div>
+          <div class="eyebrow" data-reveal>Private by design</div>
+          <h2 data-reveal>Locked. Local. <span class="grad">Yours.</span></h2>
+          <p class="section-lead" data-reveal>There is no Fundstash server to hack, sell or subpoena. Your ledger lives in an AES-256 encrypted database whose key never leaves the phone’s secure hardware.</p>
+          <div class="locals">
+            <div class="local" data-reveal><div class="ic">🏦</div><div><b>Your ledger stays put</b><span>Transactions, budgets, debts, receipts and notes live only on your phone.</span></div></div>
+            <div class="local" data-reveal><div class="ic">✉️</div><div><b>Messages are read, never uploaded</b><span>Bank SMS are parsed on the device; nothing is sent anywhere.</span></div></div>
+            <div class="local" data-reveal><div class="ic">🧠</div><div><b>AI without a cloud</b><span>Every model runs on the phone. Your questions don’t leave it.</span></div></div>
+            <div class="local" data-reveal><div class="ic">🗝️</div><div><b>Backups only you can open</b><span>A password-encrypted file you save yourself. The only network calls: optional exchange rates and the optional model download.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BENTO ================= -->
+    <section id="features">
+      <div class="wrap">
+        <div class="center">
+          <div class="eyebrow" data-reveal>And there’s more</div>
+          <h2 data-reveal>Everything else.<br><span class="grad">All of it offline.</span></h2>
+        </div>
+        <div class="bento">
+          <article class="tile wide has-mini" data-reveal data-tilt><span class="emo">🤝</span><h3>Split bills with one link</h3><p>Add friends, pick who paid, share. The link opens in the app or right in the browser, and the bill never touches a server.</p><img class="mini" src="/img/screens/split.webp" alt="" width="600" height="1295" loading="lazy"></article>
+          <article class="tile wide has-mini" data-reveal data-tilt><span class="emo">📊</span><h3>Know where you stand</h3><p>A 0–100 money-health score, a safe-to-spend number for today and savings pots that fill up.</p><img class="mini" src="/img/screens/health.webp" alt="" width="600" height="1295" loading="lazy"></article>
+          <article class="tile" data-reveal data-tilt><span class="emo">💳</span><h3>Debts, IOUs &amp; EMIs</h3><p>Interest per month or year, EMI schedules and monthly pay or collect reminders.</p></article>
+          <article class="tile" data-reveal data-tilt><span class="emo">💬</span><h3>Ask Fundstash</h3><p>“Top payees last month?” Answers come from your own data, on the phone.</p></article>
+          <article class="tile" data-reveal data-tilt><span class="emo">🏦</span><h3>Cards recognised</h3><p>Accounts and cards are picked up from alerts and linked automatically.</p></article>
+          <article class="tile" data-reveal data-tilt><span class="emo">🗝️</span><h3>Encrypted backups</h3><p>One password-locked file with everything, settings included.</p></article>
+          <article class="tile" data-reveal data-tilt><span class="emo">💱</span><h3>100+ currencies</h3><p>One base currency, rates that work offline.</p></article>
+          <article class="tile" data-reveal data-tilt><span class="emo">🇮🇳</span><h3>Made for India</h3><p>UPI, lakh &amp; crore, ₹ first. Works everywhere else too.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NUMBERS ================= -->
+    <section>
+      <div class="wrap numbers">
+        <div data-reveal><b class="grad" data-count="0">0</b><span>accounts to create</span></div>
+        <div data-reveal><b class="grad" data-count="0">0</b><span>servers holding your data</span></div>
+        <div data-reveal><b class="grad" data-count="0">0</b><span>ads or trackers</span></div>
+        <div data-reveal><b class="grad"><span data-count="100">100</span>%</b><span>on-device</span></div>
+      </div>
+    </section>
+
+    <!-- ================= TOUR ================= -->
+    <section id="tour">
+      <div class="wrap">
+        <div class="center">
+          <div class="eyebrow" data-reveal>Watch the tour</div>
+          <h2 data-reveal>Every feature in <span class="grad">80 seconds.</span></h2>
+        </div>
+        <div class="screen-frame">
+          <div class="frame" id="tour-frame">
+            <video src="/media/tour.mp4" poster="/img/tour-poster.webp" controls preload="none" playsinline></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="center">
+          <div class="eyebrow" data-reveal>Questions</div>
+          <h2 data-reveal>Good to know</h2>
+        </div>
+        <div class="faq">
+          <details data-reveal><summary>Does Fundstash read my messages?</summary><p>On Android, with your permission, it reads SMS on the phone to find completed debits and credits. Promotions, OTPs and personal chats are ignored and nothing is uploaded. iPhone apps cannot read messages, so a one-time Shortcuts automation hands bank texts to Fundstash.</p></details>
+          <details data-reveal><summary>Do I need an account?</summary><p>No. There is no sign-up and no login. Everything is stored in an encrypted database on your phone.</p></details>
+          <details data-reveal><summary>What if I lose or change my phone?</summary><p>Export an encrypted backup from Settings. It contains everything, including your settings, and only opens with your password. Restore it on the new phone.</p></details>
+          <details data-reveal><summary>Which phones get the on-device AI?</summary><p>iPhones with Apple Intelligence and Android phones with Gemini Nano use the built-in model. Any other phone can download a small open model (about 400 MB) once. The app works fully without AI too.</p></details>
+          <details data-reveal><summary>Is it free?</summary><p>Yes, free for personal use. There are no ads and your data is never sold, because we never receive it.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL ================= -->
+    <section class="final">
+      <div class="wrap">
+        <div class="eyebrow" data-reveal>Your funds, stashed locally</div>
+        <h2 data-reveal>Money tracking that<br><span class="grad">minds its own business.</span></h2>
+        <div class="cta" data-reveal>
+          <a class="btn btn-primary" href="mailto:hello@fundstash.app?subject=Tell%20me%20when%20Fundstash%20launches">Tell me when it launches</a>
+          <a class="btn btn-ghost" href="/support/">Read the guide</a>
+        </div>
+        <div class="fan" id="fan" aria-hidden="true">
+          <div class="device"><div class="screen"><img class="on" src="/img/screens/budgets.webp" alt="" width="600" height="1295" loading="lazy"></div></div>
+          <div class="device"><div class="screen"><img class="on" src="/img/screens/split.webp" alt="" width="600" height="1295" loading="lazy"></div></div>
+          <div class="device"><div class="screen"><img class="on" src="/img/screens/dashboard.webp" alt="" width="600" height="1295" loading="lazy"></div></div>
+          <div class="device"><div class="screen"><img class="on" src="/img/screens/health.webp" alt="" width="600" height="1295" loading="lazy"></div></div>
+          <div class="device"><div class="screen"><img class="on" src="/img/screens/widgets.webp" alt="" width="600" height="1295" loading="lazy"></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Fundstash. Your funds, stashed locally.</span>
+      <nav aria-label="Footer">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/support/">Support</a>
+        <a href="mailto:support@fundstash.app">support@fundstash.app</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

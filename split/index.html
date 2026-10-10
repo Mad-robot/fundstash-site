@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shared bill — Fundstash</title>
+  <meta name="description" content="A bill split shared from Fundstash.">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0B1220">
+  <meta property="og:title" content="A bill split from Fundstash">
+  <meta property="og:description" content="Open to see who paid and who owes what.">
+  <meta property="og:image" content="https://fundstash.app/img/og.jpg">
+  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/split/split.js" defer></script>
+</head>
+<body>
+  <header class="nav solid">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/img/icon.png" alt="" width="32" height="32">Fundstash</a>
+      <nav aria-label="Main"><a class="btn btn-primary" href="/#get">Get the app</a></nav>
+    </div>
+  </header>
+  <main class="doc">
+    <div class="eyebrow">Shared bill</div>
+    <h1 id="title">Bill split</h1>
+    <div id="split" aria-live="polite">
+      <p>Loading…</p>
+    </div>
+    <p class="note">This page reads the bill from the link itself, in your browser. The details after “#” are never sent to any server, including ours.</p>
+    <p>Have Fundstash? <a id="open-app" href="#">Open this split in the app</a> to mark who has paid and share it back.</p>
+  </main>
+  <footer>
+    <div class="wrap">
+      <span>Split with <a href="/">Fundstash</a>, the private expense tracker.</span>
+      <nav aria-label="Footer"><a href="/privacy/">Privacy</a><a href="/support/">Support</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

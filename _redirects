@@ -1,0 +1,7 @@
+# Stable links the app and support page can point at; the targets can change without an app update.
+/shortcut          https://www.icloud.com/shortcuts/480522a04738468bbc0e135016342600  302
+/iphone-sms        /support/#bank-sms-on-iphone  301
+/privacy-policy    /privacy/  301
+/terms-of-service  /terms/    301
+/tos               /terms/    301
+/help              /support/  301
