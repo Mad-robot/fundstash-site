@@ -22,6 +22,7 @@ function start() {
     root.classList.add('no-webgl');
     return;
   }
+  canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); root.classList.add('no-webgl'); });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -268,6 +269,7 @@ function start() {
     rig.position.set(narrow ? 0 : Math.min(1.9, 0.69 * camera.aspect), narrow ? -1.2 : -0.05, 0);
     rig.scale.setScalar(narrow ? Math.min(0.72, 0.5 * camera.aspect + 0.28) : Math.min(1, 0.5 + 0.28 * camera.aspect));
     camera.updateProjectionMatrix();
+    if (reduce) renderer.render(scene, camera); // no render loop: setSize just cleared the canvas
   }
   window.addEventListener('resize', resize);
   resize();

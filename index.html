@@ -27,7 +27,7 @@
   <script src="/js/motion.js" defer></script>
   <script type="module" src="/js/hero3d.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Fundstash","applicationCategory":"FinanceApplication","operatingSystem":"Android, iOS","description":"Private, on-device expense tracker: bank SMS, receipts, voice and on-device AI. No account, no servers.","url":"https://fundstash.app/"}
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Fundstash","applicationCategory":"FinanceApplication","operatingSystem":"Android, iOS","description":"Private, on-device expense tracker: bank SMS, receipts, voice and on-device AI. No account, no servers.","url":"https://fundstash.app/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
   </script>
 </head>
 <body>
@@ -67,7 +67,7 @@
     <div class="hero" id="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-grid" aria-hidden="true"></div>
-      <canvas id="scene" aria-label="A 3D phone showing the Fundstash app, surrounded by floating coins and transactions"></canvas>
+      <canvas id="scene" role="img" aria-label="A 3D phone showing the Fundstash app, surrounded by floating coins and transactions"></canvas>
       <picture><source media="(prefers-color-scheme: light)" srcset="/img/screens/light/dashboard.webp" data-theme-src><img class="hero-fallback" src="/img/screens/dashboard.webp" alt="" width="600" height="1295"></picture>
       <div class="wrap">
         <div class="hero-copy">
@@ -199,12 +199,12 @@
         <div>
           <div class="eyebrow" data-reveal>Private by design</div>
           <h2 data-reveal>Locked. Local. <span class="grad">Yours.</span></h2>
-          <p class="section-lead" data-reveal>There is no Fundstash server to hack, sell or subpoena. Your ledger lives in an AES-256 encrypted database whose key never leaves the phone’s secure hardware.</p>
+          <p class="section-lead" data-reveal>There is no Fundstash server to hack, sell or subpoena. Your ledger lives in an AES-256 encrypted database whose key is protected by the phone’s Keychain or Keystore.</p>
           <div class="locals">
             <div class="local" data-reveal><span class="ico"><svg><use href="#i-phone"/></svg></span><div><b>Your ledger stays put</b><span>Transactions, budgets, debts, receipts and notes live only on your phone.</span></div></div>
             <div class="local" data-reveal><span class="ico"><svg><use href="#i-mail"/></svg></span><div><b>Messages are read, never uploaded</b><span>Bank SMS are parsed on the device; nothing is sent anywhere.</span></div></div>
             <div class="local" data-reveal><span class="ico"><svg><use href="#i-chip"/></svg></span><div><b>AI without a cloud</b><span>Every model runs on the phone. Your questions don’t leave it.</span></div></div>
-            <div class="local" data-reveal><span class="ico"><svg><use href="#i-key"/></svg></span><div><b>Backups only you can open</b><span>A password-encrypted file you save yourself. The only network calls: optional exchange rates and the optional model download.</span></div></div>
+            <div class="local" data-reveal><span class="ico"><svg><use href="#i-key"/></svg></span><div><b>Backups only you can open</b><span>A password-encrypted file you save yourself. It only goes online when you ask: for exchange rates or the optional model download.</span></div></div>
           </div>
         </div>
       </div>
@@ -225,7 +225,7 @@
           <article class="tile" data-reveal data-tilt><span class="ico"><svg><use href="#i-card"/></svg></span><h3>Cards recognised</h3><p>Accounts and cards are picked up from alerts and linked automatically.</p></article>
           <article class="tile" data-reveal data-tilt><span class="ico"><svg><use href="#i-lock"/></svg></span><h3>Encrypted backups</h3><p>One password-locked file with everything, settings included.</p></article>
           <article class="tile cur" data-reveal data-tilt><span class="ico"><svg><use href="#i-globe"/></svg></span><h3>Any currency, written your way</h3><p>107 currencies with rates that work offline. Lakh and crore for rupees, 1,234.56 for dollars, euros and pounds. Bank alerts in $, €, £, ₹ and 30 more are understood.</p>
-            <div class="coins" aria-label="Some supported currencies"><span>₹ INR</span><span>$ USD</span><span>€ EUR</span><span>£ GBP</span><span>¥ JPY</span><span>د.إ AED</span><span>S$ SGD</span><span>A$ AUD</span><span>C$ CAD</span><span>+98</span></div></article>
+            <div class="coins" role="group" aria-label="Some supported currencies"><span>₹ INR</span><span>$ USD</span><span>€ EUR</span><span>£ GBP</span><span>¥ JPY</span><span>د.إ AED</span><span>S$ SGD</span><span>A$ AUD</span><span>C$ CAD</span><span>+98</span></div></article>
         </div>
       </div>
     </section>
@@ -258,11 +258,11 @@
       <div class="wrap">
         <div class="center">
           <div class="eyebrow" data-reveal>Watch the tour</div>
-          <h2 data-reveal>Every feature in <span class="grad">80 seconds.</span></h2>
+          <h2 data-reveal>Every feature in <span class="grad">under 90 seconds.</span></h2>
         </div>
         <div class="screen-frame">
           <div class="frame" id="tour-frame">
-            <video src="/media/tour.mp4" poster="/img/tour-poster.webp" controls preload="none" playsinline></video>
+            <video src="/media/tour.mp4" aria-label="Fundstash app tour video" poster="/img/tour-poster.webp" controls preload="none" playsinline></video>
           </div>
         </div>
       </div>

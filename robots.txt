@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /split
 Sitemap: https://fundstash.app/sitemap.xml

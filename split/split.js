@@ -23,9 +23,13 @@
       var people = raw.people
         .filter(function (p) { return p && typeof p.id === 'string' && typeof p.name === 'string' && p.name.trim(); })
         // the sender's own row is called "You" in the app; for the friend reading this page that is the sender
-        .map(function (p) { var n = String(p.name).slice(0, 60); return { id: p.id, name: p.id === 'p1' && /^you$/i.test(n.trim()) ? 'The sender' : n, isPaid: p.isPaid === true }; });
+        // sentName is the name as sent, handed back to the app untouched
+        .map(function (p) { var n = String(p.name).slice(0, 60); return { id: p.id, name: p.id === 'p1' && /^you$/i.test(n.trim()) ? 'The sender' : n, sentName: n, isPaid: p.isPaid === true }; });
       if (people.length < 2 || people.length > MAX_PEOPLE || !people.some(function (p) { return p.id === raw.payerId; })) return null;
       return {
+        id: raw.id.slice(0, 40),
+        categoryId: typeof raw.categoryId === 'string' ? raw.categoryId.slice(0, 40) : undefined,
+        updatedAt: typeof raw.updatedAt === 'string' ? raw.updatedAt.slice(0, 40) : undefined,
         description: typeof raw.description === 'string' ? raw.description.slice(0, 120) : '',
         total: total,
         tipPercent: TIPS.indexOf(raw.tipPercent) >= 0 ? raw.tipPercent : 0,
@@ -92,7 +96,13 @@
     root.appendChild(list);
 
     // The installed app takes the same data through its own scheme (and through this URL once app links are verified).
-    document.getElementById('open-app').href = 'fundstash://split-bill?d=' + encodeURIComponent(JSON.stringify(Object.assign({ v: 1 }, JSON.parse(param.charAt(0) === '{' ? param : decodeURIComponent(param)))));
+    // Built from the validated split only (never the raw hash), so a malformed link cannot throw here.
+    var app = {
+      v: 1, id: s.id, description: s.description, total: s.total, tipPercent: s.tipPercent, payerId: s.payerId,
+      categoryId: s.categoryId, currency: s.currency, updatedAt: s.updatedAt,
+      people: s.people.map(function (p) { return { id: p.id, name: p.sentName, isPaid: p.isPaid }; }),
+    };
+    document.getElementById('open-app').href = 'fundstash://split-bill?d=' + encodeURIComponent(JSON.stringify(app));
   }
 
   window.addEventListener('hashchange', render);

@@ -6,7 +6,11 @@
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduce');
   try {
     var c = document.createElement('canvas');
-    if (!(c.getContext('webgl2') || c.getContext('webgl'))) d.classList.add('no-webgl');
+    var gl = c.getContext('webgl2') || c.getContext('webgl');
+    if (!gl) d.classList.add('no-webgl');
+    // release the test context so it does not count against the browser's live-context limit
+    var ext = gl && gl.getExtension('WEBGL_lose_context');
+    if (ext) ext.loseContext();
   } catch (e) {
     d.classList.add('no-webgl');
   }
