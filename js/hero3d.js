@@ -66,7 +66,10 @@ function start() {
   // two stacked screen planes so screens can cross-fade
   const SW = 0.742, SH = SW * (1295 / 600);
   const screenGeo = new THREE.PlaneGeometry(SW, SH);
-  const screens = ['dashboard', 'transactions', 'budgets', 'lock', 'split'].map((id) => tex(`/img/screens/${id}.webp`));
+  const SCREEN_IDS = ['dashboard', 'transactions', 'budgets', 'lock', 'split'];
+  const screenSets = {};
+  const screenSet = (light) => (screenSets[light] ||= SCREEN_IDS.map((id) => tex(`/img/screens/${light ? 'light/' : ''}${id}.webp`)));
+  let screens = screenSet(isLight());
   const screenA = new THREE.Mesh(screenGeo, new THREE.MeshBasicMaterial({ map: screens[0], transparent: true, toneMapped: false }));
   const screenB = new THREE.Mesh(screenGeo, new THREE.MeshBasicMaterial({ map: screens[1], transparent: true, opacity: 0, toneMapped: false }));
   screenA.position.z = D / 2 + 0.001;
@@ -221,12 +224,22 @@ function start() {
   scene.add(dots);
 
   // additive glow vanishes on a white page, so light mode uses darker, normally blended dots
-  function applyTheme() {
+  function applyTheme(initial) {
     const light = isLight();
     dots.material.color.set(light ? 0x0d9488 : 0x5eead4);
     dots.material.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
     dots.material.opacity = light ? 0.45 : 0.65;
     dots.material.needsUpdate = true;
+    body.material.color.set(light ? 0xc8d0db : 0x1b2333);
+    body.material.roughness = light ? 0.32 : 0.24;
+    bump.material.color.set(light ? 0xb4bfcc : 0x232c3d);
+    btnMat.color.set(light ? 0xb4bfcc : 0x2a3446);
+    if (!initial) {
+      // `shown` exists only once the loop below is set up; the first call keeps the screens picked above
+      screens = screenSet(light);
+      screenA.material.map = screens[shown];
+      screenA.material.needsUpdate = true;
+    }
     cards.forEach((m, i) => {
       const [e, t, s, a, pos] = cardData[i];
       m.material.map.dispose();
@@ -235,8 +248,8 @@ function start() {
     });
     if (reduce) renderer.render(scene, camera);
   }
-  applyTheme();
-  document.addEventListener('fs-theme', applyTheme); // fired by /js/theme.js on toggle and on system change
+  applyTheme(true);
+  document.addEventListener('fs-theme', () => applyTheme(false)); // fired by /js/theme.js on toggle and on system change
 
   // ---------- layout ----------
   const rig = new THREE.Group(); // everything except particles follows the layout

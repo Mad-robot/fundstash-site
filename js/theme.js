@@ -21,6 +21,9 @@
     if (choice === 'system') d.removeAttribute('data-theme');
     else d.setAttribute('data-theme', choice);
     var light = choice === 'light' || (choice === 'system' && !!media && media.matches);
+    // app screenshots: <source media> follows the system; a picked theme forces it on or off
+    var sources = document.querySelectorAll('source[data-theme-src]');
+    for (var j = 0; j < sources.length; j++) sources[j].media = choice === 'system' ? '(prefers-color-scheme: light)' : choice === 'light' ? 'all' : 'not all';
     // browser chrome colour follows the effective theme
     var metas = document.querySelectorAll('meta[name="theme-color"]');
     for (var i = 0; i < metas.length; i++) metas[i].setAttribute('content', light ? '#F8FAFC' : '#05080F');
