@@ -9,6 +9,8 @@ const canvas = document.getElementById('scene');
 const hero = document.getElementById('hero');
 const reduce = root.classList.contains('reduce');
 const lightQuery = window.matchMedia('(prefers-color-scheme: light)');
+// a picked theme (data-theme) wins over the system setting
+const isLight = () => { const t = root.getAttribute('data-theme'); return t ? t === 'light' : lightQuery.matches; };
 
 function start() {
   if (!canvas || root.classList.contains('no-webgl')) return;
@@ -147,7 +149,7 @@ function start() {
 
   // ---------- floating transaction cards ----------
   function cardTexture(emoji, title, sub, amount, positive) {
-    const light = lightQuery.matches;
+    const light = isLight();
     const c = document.createElement('canvas');
     c.width = 640;
     c.height = 200;
@@ -220,7 +222,7 @@ function start() {
 
   // additive glow vanishes on a white page, so light mode uses darker, normally blended dots
   function applyTheme() {
-    const light = lightQuery.matches;
+    const light = isLight();
     dots.material.color.set(light ? 0x0d9488 : 0x5eead4);
     dots.material.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending;
     dots.material.opacity = light ? 0.45 : 0.65;
@@ -234,7 +236,7 @@ function start() {
     if (reduce) renderer.render(scene, camera);
   }
   applyTheme();
-  lightQuery.addEventListener('change', applyTheme);
+  document.addEventListener('fs-theme', applyTheme); // fired by /js/theme.js on toggle and on system change
 
   // ---------- layout ----------
   const rig = new THREE.Group(); // everything except particles follows the layout

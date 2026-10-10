@@ -41,9 +41,10 @@
   font-feature-settings: 'ss01', 'cv11';
 }
 
-/* light theme follows the phone or computer setting, same palette as the app */
+/* light palette = the app's; used when the system is light (unless Dark was picked) or when Light was picked */
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
     --bg: #f8fafc;
     --bg-2: #eef2f7;
     --card: #ffffff;
@@ -71,6 +72,35 @@
     --success: #059669;
   }
 }
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --bg-2: #eef2f7;
+  --card: #ffffff;
+  --card-2: #f1f5f9;
+  --border: rgba(15, 23, 42, 0.09);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --text: #0f172a;
+  --text-2: #475569;
+  --muted: #64748b;
+  --accent: #0d9488;
+  --accent-2: #0891b2;
+  --mint: #14b8a6;
+  --indigo: #6366f1;
+  --danger: #ef4444;
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-solid: #ffffff;
+  --tile-a: #ffffff;
+  --tile-b: #f8fafc;
+  --nav-bg: rgba(248, 250, 252, 0.92);
+  --chip-bg: rgba(255, 255, 255, 0.97);
+  --shadow: rgba(15, 23, 42, 0.14);
+  --device-glow: rgba(13, 148, 136, 0.12);
+  --grid-line: rgba(15, 23, 42, 0.05);
+  --doc-text: #334155;
+  --success: #059669;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; }
 html { background: var(--bg); scroll-behavior: smooth; scroll-padding-top: 84px; }
@@ -100,8 +130,15 @@ a:hover { text-decoration: underline; }
 .nav nav a { color: var(--text-2); font-weight: 600; font-size: 15px; transition: color 0.2s; }
 .nav nav a:hover { color: var(--text); text-decoration: none; }
 .nav nav a.btn-primary, .nav nav a.btn-primary:hover { color: var(--on-accent); }
+.theme-toggle { flex: none; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: 12px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-2); cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+.theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+.theme-toggle svg { display: none; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+html:not([data-theme-choice]) .theme-toggle .t-system, [data-theme-choice="system"] .theme-toggle .t-system,
+[data-theme-choice="light"] .theme-toggle .t-light, [data-theme-choice="dark"] .theme-toggle .t-dark { display: block; }
+.theme-toggle .t-system path { fill: currentColor; stroke: none; }
 @media (max-width: 760px) { .nav nav a:not(.btn) { display: none; } }
-@media (max-width: 360px) { .nav .wrap { gap: 12px; } .nav .btn { padding: 10px 14px; font-size: 14px; } }
+@media (max-width: 760px) { .nav nav { gap: 10px; } }
+@media (max-width: 360px) { .nav .wrap { gap: 12px; } .nav .btn { padding: 10px 14px; font-size: 14px; } .theme-toggle { width: 36px; height: 36px; } }
 
 .btn { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font-weight: 700; font-size: 15px; border: 1px solid transparent; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s; }
 .btn:hover { text-decoration: none; transform: translateY(-2px); }
