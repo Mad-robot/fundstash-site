@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["A64L3W4N5M.com.fundstash.app"],
+        "appIDs": ["4RK6YA795V.com.fundstash.app", "A64L3W4N5M.com.fundstash.app"],
         "components": [
           { "/": "/split", "comment": "Shared bill splits open in the app" },
           { "/": "/split/", "comment": "Shared bill splits open in the app" }
