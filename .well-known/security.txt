@@ -1,0 +1,13 @@
+# Fundstash Security Policy (RFC 9116)
+Contact: mailto:security@fundstash.app
+Contact: https://github.com/Mad-robot/fundstash-site/issues/new?template=bug_report.yml
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://fundstash.app/.well-known/security.txt
+Policy: https://fundstash.app/privacy/
+Acknowledgments: https://github.com/Mad-robot/fundstash-site/issues
+
+# Architecture Note:
+# Fundstash is a 100% on-device, offline personal finance app.
+# All data (transactions, budgets, accounts, receipts) is stored locally in an encrypted SQLite database on the user's handset.
+# There are no user accounts, cloud databases, or backend servers handling financial records.

@@ -1,0 +1,12 @@
+/* TEAM */
+  Project: Fundstash
+  Site: https://fundstash.app
+  GitHub: https://github.com/Mad-robot/fundstash-site
+  Philosophy: 100% on-device, zero-cloud personal finance
+
+/* SITE */
+  Standards: HTML5, CSS3, vanilla JavaScript
+  Dependencies: three.js, GSAP, ScrollTrigger (all vendored locally, zero external CDN requests)
+  Typography: Inter (self-hosted WOFF2, zero Google Fonts requests)
+  Hosting: Cloudflare Pages
+  Privacy: Zero cookies, zero analytics, zero trackers, zero external requests

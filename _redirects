@@ -5,3 +5,4 @@
 /terms-of-service  /terms/    301
 /tos               /terms/    301
 /help              /support/  301
+/security.txt      /.well-known/security.txt  301

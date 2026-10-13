@@ -1,0 +1,102 @@
+# Fundstash — Full Technical & Product Documentation
+
+> **Tagline**: Your funds, stashed locally.  
+> **Platforms**: iOS (Apple Intelligence, iOS Shortcuts) & Android (Android AICore, Gemini Nano, Background SMS Receiver).  
+> **Architecture**: 100% Offline, Zero-Cloud, Local-First, Zero-Analytics, AES-256 SQLite Database.  
+> **Website**: https://fundstash.app  
+> **License**: PolyForm Strict 1.0.0 (Personal Use)  
+> **Issue Tracker**: https://github.com/Mad-robot/fundstash-site/issues  
+
+---
+
+## 1. Executive Summary & Privacy Philosophy
+
+Fundstash is an automated personal finance manager engineered to run entirely on the user's smartphone. Most financial apps compromise user privacy by requiring banking credentials through aggregators, mandatory cloud accounts, remote receipt storage, or advertising SDKs. Fundstash rejects this paradigm completely:
+
+1. **Zero Cloud Infrastructure**: There is no remote backend server or central database processing user data. All transactions, budgets, accounts, and images exist solely on the device.
+2. **Zero Accounts or Sign-ups**: Users do not create accounts, enter email addresses, or set passwords to use the service.
+3. **Local Encryption**: Financial records are stored in a sandboxed SQLite database encrypted with AES-256.
+4. **Offline Capability**: Operates fully without an internet connection. If the device is in airplane mode or has no SIM card, Fundstash remains fully operational.
+5. **Zero Telemetry**: No third-party analytics SDKs, advertising pixels, crash trackers with user data, or telemetry trackers. 0 bytes are transmitted off the device.
+
+---
+
+## 2. Core Functional Modules
+
+### 2.1 Automated Bank & Card SMS Sync
+- **Mechanism**: Captures financial transaction alert SMS messages in real-time.
+  - **Android**: Utilizes a native background SMS broadcast listener (with user SMS permission) to parse messages immediately upon arrival.
+  - **iOS**: Utilizes a zero-cloud Apple Shortcuts automation that forwards incoming transaction messages to Fundstash on-device.
+- **Heuristic Parsing Engine**: High-performance local regular expressions identify:
+  - Transaction amounts and currency symbols (₹, $, €, £, and 100+ others).
+  - Transaction type: Debit, Credit, UPI transfer, ATM withdrawal, Credit Card swipe, Refund, Bill Autopay.
+  - Merchant / Payee names.
+  - Account and card references (e.g., `AC X1234`, `Card XX5678`).
+  - Dates and unique transaction/UPI reference numbers (UTR).
+- **Spam & OTP Filtering**: Automatically ignores promotional messages, recharge offers, OTP codes, and personal conversations.
+- **Silencing iOS Banners**: On iPhone, users can turn off the system Shortcuts execution banner via **Settings → Screen Time → See All App & Website Activity → Notifications → Shortcuts → Allow Notifications [Off]**.
+
+### 2.2 On-Device AI & Decision Engine
+- **Supported Engines**:
+  - **Android**: Android AICore / Gemini Nano on compatible devices.
+  - **iOS**: Apple Intelligence foundation models on compatible iPhones.
+  - **Universal Fallback**: Compact open-weights model (**Qwen 0.6B GGUF**) running locally via embedded `llama.cpp`. Downloaded once into persistent application document storage (`FileSystem.documentDirectory`), remaining untouched across application updates.
+- **Paced Batch Review**: Background transactions are analyzed in gentle batches of 5 with throttle intervals (1.2s delay between batches). This prevents CPU overheating, battery drain, and UI stutter.
+- **Capabilities**:
+  - Normalizes cryptic billing descriptions (e.g., `POS 491290 XFR` -> clean merchant name).
+  - Disambiguates category assignments with high contextual accuracy.
+  - "Ask Fundstash": A private local conversational assistant that answers queries about spending habits, category breakdowns, and historical trends directly against the local SQLite database.
+- **Zero Cloud Leakage**: Prompts, messages, and model weights run strictly on device silicon; no data is ever transmitted to model providers.
+- **Optional**: Fundstash works with complete heuristic rules if AI is disabled.
+
+### 2.3 Instant Receipt & Invoice OCR
+- **Computer Vision**: Leverages on-device Apple Vision (iOS) and Google MLKit (Android).
+- **Extraction**: Scans printed receipts, invoices, or digital screenshots to automatically detect merchant name, invoice date, taxes, line items, and total amount.
+- **Attachment**: Allows linking compressed image records directly to transaction items.
+
+### 2.4 Natural Language & Quick Voice Logging
+- **"Chai 40" Syntax**: Fast parser converts strings like `chai 40`, `uber 250 to office`, or `groceries 85` directly into structured transactions with amount, category, and notes.
+- **Voice Entry**: Integrates system offline speech-to-text for quick hands-free expense entry.
+
+### 2.5 Dynamic Budgets & Universal Layouts
+- **Periodic Cycles**: Weekly, monthly, and yearly budgets.
+- **Health Zones**: Color-coded progress thresholds:
+  - Safe (< 60% spent): Green
+  - Caution (60% - 80% spent): Amber
+  - Critical (> 80% spent): Red
+- **Customization**: Unlimited custom categories with user-selected names, emoji icons, and color pickers.
+- **Adaptive Layout Engine**: Designed to gracefully adjust across all smartphone screen sizes and aspect ratios, with keyboard-aware scrolling parity on both iOS and Android.
+
+### 2.6 Financial Analytics & Insights
+- **Centered Donut Breakdown**: Dynamically scaled typography centering "Total Spent" inside category donut charts.
+- **Safe-to-Spend Metric**: Daily allowance calculated by subtracting fixed bills and active budget allocations from disposable balances over remaining cycle days.
+- **Spending Velocity**: Forecasting algorithms that project month-end totals based on real-time spending pace.
+
+### 2.7 Multi-Account & Multi-Currency System
+- **Accounts**: Tracking for Bank Accounts, Credit Cards, Cash Wallets, Digital Wallets, and Savings.
+- **Transfers**: Inter-account balance adjustments without skewing monthly expense metrics.
+- **107 Currencies**: Built-in offline exchange rate tables provided by the European Central Bank (ECB).
+
+### 2.8 Zero-Knowledge Cryptographic Bill Splitting
+- **URL**: `https://fundstash.app/split/#d=<base64-payload>`
+- **Privacy Architecture**: Bill details, itemization, and participant shares are serialized and compressed into the URL fragment identifier (`#d=...`).
+- **Client-Side Decoding**: Web browsers never transmit URL fragment hashes to web servers in HTTP requests. The Fundstash web viewer decodes and renders the bill entirely in JavaScript client-side. The bill contents never touch Fundstash servers.
+
+### 2.9 Backups & Data Ownership
+- **Exports**: Full CSV and JSON exports for spreadsheets and local data modeling.
+- **Encrypted Snapshots**: Complete SQLite database encrypted backup exportable to local storage, iCloud Drive, or Google Drive, requiring the user's master password for decryption.
+
+---
+
+## 3. URLs, Web Endpoints & Resources
+
+- `https://fundstash.app/`: Homepage, 3D interactive hero, and feature tour.
+- `https://fundstash.app/support/`: Comprehensive user guide and FAQs.
+- `https://fundstash.app/privacy/`: Complete privacy manifesto.
+- `https://fundstash.app/terms/`: Terms of service.
+- `https://fundstash.app/split/`: Client-side bill decoder.
+- `https://fundstash.app/shortcut`: Redirect to iOS Shortcuts automation.
+- `https://fundstash.app/.well-known/security.txt`: RFC 9116 security policy.
+- `https://fundstash.app/llms.txt`: Machine-readable overview for LLMs.
+- `https://fundstash.app/llms-full.txt`: Full technical reference document.
+- `https://github.com/Mad-robot/fundstash-site`: Public GitHub repository and issue tracker.

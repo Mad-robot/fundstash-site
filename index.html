@@ -10,6 +10,8 @@
   <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/favicon.png">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="author" href="/humans.txt">
   <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fundstash.app/">
@@ -27,7 +29,31 @@
   <script src="/js/motion.js" defer></script>
   <script type="module" src="/js/hero3d.js"></script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Fundstash","applicationCategory":"FinanceApplication","operatingSystem":"Android, iOS","description":"Private, on-device expense tracker: bank SMS, receipts, voice and on-device AI. No account, no servers.","url":"https://fundstash.app/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fundstash",
+    "applicationCategory": "FinanceApplication",
+    "applicationSubCategory": "Personal Finance & Expense Tracker",
+    "operatingSystem": "Android, iOS",
+    "description": "Private, on-device expense tracker: bank SMS, receipts, voice and on-device AI. No account, no servers.",
+    "url": "https://fundstash.app/",
+    "sameAs": "https://github.com/Mad-robot/fundstash-site",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Automated Bank & Card SMS Sync",
+      "On-Device AI Review (Gemini Nano & Apple Intelligence)",
+      "Receipt OCR",
+      "Dynamic Budgets & Category Management",
+      "Zero-Knowledge Cryptographic Bill Splitting",
+      "100% Offline Capability",
+      "Local AES-256 Encrypted SQLite Storage"
+    ]
+  }
   </script>
 </head>
 <body>

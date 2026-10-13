@@ -1,0 +1,26 @@
+# Fundstash
+
+> Fundstash is a 100% private, on-device personal finance and expense tracking application for iOS and Android. It operates with zero cloud infrastructure, zero user accounts, and zero telemetry or analytics, saving all financial data locally in an AES-256 encrypted SQLite database.
+
+## Overview
+Fundstash automates expense tracking directly on the user's smartphone without connecting to external banking aggregator APIs. It combines instant background SMS transaction parsing, local on-device machine learning (Apple Intelligence, Gemini Nano on Android AICore, or local Qwen 0.6B GGUF via llama.cpp), receipt OCR, conversational expense entry, dynamic budgeting, and deep spending analytics.
+
+## Core Capabilities
+- **Automated Bank SMS Sync**: Captures and parses transaction alert SMS messages in real-time on Android (native background listener) and iOS (Shortcuts automation). Extracts amounts, currencies, merchant names, payment modes, and account references.
+- **On-Device AI & Decision Engine**: Evaluates transactions in smooth batches of 5 with throttle pacing. Categorizes spend, clarifies merchant descriptors, and powers a private on-device "Ask Fundstash" conversational assistant.
+- **Offline Receipt & Invoice OCR**: Extracts line items, dates, and amounts from receipts locally using Apple Vision and Android MLKit without uploading photos to the cloud.
+- **Natural Language Logging**: Rapid conversational text entry ("chai 40", "uber 250") and offline voice transcription.
+- **Dynamic Budgets & Visual Health**: Color-coded budget tracking (<60% green, 60-80% amber, >80% red) with custom categories, emojis, and adaptive layouts across all screen sizes.
+- **Visual Analytics**: Interactive spending breakdown donut chart with dynamic typography, Safe-to-Spend daily metrics, weekly trends, and end-of-month velocity forecasting.
+- **Zero-Knowledge Bill Splitting**: Shares itemized bills via cryptographic URL fragment hashes (`fundstash.app/split/#d=...`) that decode 100% in the recipient's browser without ever sending data to a server.
+- **Multi-Account & Multi-Currency**: Manages bank accounts, credit cards, cash, and digital wallets across 107 currencies with offline ECB exchange rate tables.
+- **Data Sovereignty**: Instant CSV/JSON exports and encrypted full database backups.
+
+## Key Resources
+- [Fundstash Homepage](https://fundstash.app): Marketing landing page, 3D interactive hero, and feature walkthrough.
+- [Support & FAQ](https://fundstash.app/support/): Detailed setup guide, bank SMS integration on iPhone and Android, troubleshooting, and Shortcuts automation notification controls.
+- [Privacy Policy](https://fundstash.app/privacy/): Comprehensive zero-cloud, on-device architecture manifesto and data privacy guarantee.
+- [Terms of Service](https://fundstash.app/terms/): Terms of service for personal use.
+- [Zero-Knowledge Bill Splitter](https://fundstash.app/split/): Client-side bill decoder and settlement interface.
+- [GitHub Public Tracker](https://github.com/Mad-robot/fundstash-site): Community issues, bug reports, and bank SMS parsing pattern requests.
+- [Full Technical & Feature Reference](https://fundstash.app/llms-full.txt): Comprehensive deep-dive documentation for AI models and autonomous agents.

@@ -1,2 +1,14 @@
 User-agent: *
+Allow: /
+Disallow: /split/
+
+# Sitemaps and Machine Metadata
 Sitemap: https://fundstash.app/sitemap.xml
+
+# LLM & AI Discoverability
+# https://llmstxt.org/
+# https://fundstash.app/llms.txt
+# https://fundstash.app/llms-full.txt
+
+# Security Policy (RFC 9116)
+# https://fundstash.app/.well-known/security.txt
