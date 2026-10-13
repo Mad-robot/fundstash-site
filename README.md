@@ -41,6 +41,7 @@ Fundstash takes the opposite approach:
 * **Broad Financial Provider Support**: Supports national and international banks, card issuers, and payment networks (including Indian banking and UPI ecosystems such as HDFC, SBI, ICICI, Axis, Kotak, Chase, Barclays, and more).
 * **Smooth Resource Throttling**: Background SMS messages are queued and processed cleanly without battery drain or interface lag.
 * **Cross-Platform Parity**: Background SMS integration on Android and iOS automation via Shortcuts.
+* **Silencing iOS Automation Banners**: To stop iOS from displaying a banner alert each time an automation runs: open **Settings → Screen Time → See All App & Website Activity → Notifications → Shortcuts** and turn off **Allow Notifications** (see the [support guide](https://fundstash.app/support/#hide-shortcuts-notifications) for details).
 
 ### 2. On-Device AI & Decision Intelligence
 * **Hardware-Accelerated Local Intelligence**:

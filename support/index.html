@@ -40,7 +40,16 @@
       <li>Tap the arrow next to “where” and turn off <strong>Confirm Before Run</strong>.</li>
       <li>Add the action <strong>Import bank SMS</strong> (Fundstash). Set Message text to Message → <strong>Content</strong> and Sender to Message → <strong>Sender</strong>.</li>
     </ol>
-    <p>iOS shows a small banner when an automation runs. To hide it: Settings → Notifications → Shortcuts → turn off Allow Notifications (or use Screen Time → See All App &amp; Website Activity → Notifications → Shortcuts).</p>
+    <h3 id="hide-shortcuts-notifications">How to disable Shortcuts automation notifications</h3>
+    <p>By default, iOS displays a banner alert each time an automation runs in the background. Because Apple conceals Shortcuts from the primary Notifications settings menu, you can silence it completely via Screen Time:</p>
+    <ol>
+      <li>Open iPhone <strong>Settings</strong>.</li>
+      <li>Tap <strong>Screen Time</strong> → <strong>See All App &amp; Website Activity</strong>.</li>
+      <li>Scroll down to the <strong>Notifications</strong> section at the bottom.</li>
+      <li>Tap <strong>Shortcuts</strong> (if it is not clickable, tap the previous day or week bar at the top, then tap back to today).</li>
+      <li>Turn off <strong>Allow Notifications</strong>.</li>
+    </ol>
+    <p>Once disabled, your SMS import automation triggers completely silently in the background without banner interruptions.</p>
 
     <h2 id="bank-sms-on-android">Bank SMS on Android</h2>
     <p>Allow SMS access when asked, or in Settings → Apps → Fundstash → Permissions. Turn on Auto-Sync in Fundstash Settings. Only completed debits and credits are recorded; offers, recharge reminders, OTPs and failed payments are skipped.</p>
