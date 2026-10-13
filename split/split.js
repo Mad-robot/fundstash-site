@@ -63,10 +63,13 @@
     var param = new URLSearchParams(location.hash.replace(/^#/, '')).get('d');
     var s = decodeSplit(param);
     root.textContent = '';
+    var box = document.querySelector('.add-to-app-box');
     if (!s) {
       root.appendChild(el('p', null, 'This link does not contain a valid split. Ask your friend to share it again from Fundstash.'));
+      if (box) box.style.display = 'none';
       return;
     }
+    if (box) box.style.display = 'block';
 
     var grand = s.total + (s.total * s.tipPercent) / 100;
     var share = grand / s.people.length;
