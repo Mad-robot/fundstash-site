@@ -1,0 +1,89 @@
+name: "📨 Bank SMS Pattern Request"
+description: Request support or improvements for a bank or UPI transaction SMS format
+title: "[SMS Pattern]: "
+labels: ["sms-parser", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Request Automated SMS Parsing for Your Bank
+        Fundstash parses transaction SMS messages 100% on-device using fast regular expressions and heuristics. 
+        If messages from your bank or card provider are not being parsed correctly or need support, share a sanitized sample below.
+
+        🛡️ **MANDATORY PRIVACY SANITIZATION**:
+        - **NEVER paste raw SMS messages containing real credentials!**
+        - Replace real account numbers with `XXXX1234`.
+        - Replace card numbers with `XX5678`.
+        - Replace account balances with `XX,XXX.XX`.
+        - Replace UPI reference / UTR numbers with `123456XXXXXX`.
+        - Replace phone numbers, OTPs, and personal names with placeholders.
+
+  - type: input
+    id: bank_name
+    attributes:
+      label: Bank / Financial Institution
+      description: Name of the bank, card issuer, or payment app.
+      placeholder: "e.g., HDFC Bank, SBI, ICICI, Axis Bank, Kotak, Chase, Barclays"
+    validations:
+      required: true
+
+  - type: input
+    id: sender_header
+    attributes:
+      label: SMS Sender Header / ID
+      description: The sender header as shown on your phone.
+      placeholder: "e.g., AD-HDFCBK, VK-SBIINB, BZ-ICICIB, AXISBK, etc."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: transaction_type
+    attributes:
+      label: Transaction Type
+      description: What type of transaction does this SMS represent?
+      options:
+        - Debit / Expense (Bank Account)
+        - Debit / Expense (Credit Card)
+        - UPI Transfer / Merchant Payment
+        - Credit / Deposit (Income)
+        - Cash Withdrawal (ATM)
+        - Refund / Cashback
+        - Bill Payment / Autopay / Subscription
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: sanitized_sms_text
+    attributes:
+      label: Sanitized SMS Message Text
+      description: Paste the exact message text with sensitive numbers replaced with X's. Keep the original casing, punctuation, and wording intact.
+      placeholder: |
+        Sent Rs.450.00 from Kotak Bank AC X1234 to SWIGGY on 12-10-26 via UPI Ref 123456XXXXXX. Bal Rs.XX,XXX.XX. - Kotak Bank
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_parsed_values
+    attributes:
+      label: Expected Parsed Fields
+      description: What specific fields should Fundstash extract from this SMS?
+      placeholder: |
+        - Amount: 450.00
+        - Currency: INR
+        - Merchant / Payee: SWIGGY
+        - Account / Card Identifier: AC X1234
+        - Direction: Debit / Expense
+        - Date: 12-10-2026
+        - Reference Number: 123456XXXXXX
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current Behavior in Fundstash
+      description: What happens currently when this SMS is received?
+      placeholder: "e.g., The SMS is not detected, or the merchant name is captured incorrectly as 'Ref'."
+    validations:
+      required: false

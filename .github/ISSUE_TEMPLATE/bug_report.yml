@@ -1,0 +1,94 @@
+name: "🐛 Bug Report"
+description: Report an issue, glitch, or unexpected behavior in Fundstash
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Thanks for reporting an issue!
+        Please fill out this form to help us diagnose and resolve the problem.
+
+        ⚠️ **PRIVACY WARNING**: Fundstash is a 100% private, on-device app. **NEVER** share real bank account numbers, debit/credit card numbers, passwords, PINs, OTPs, or personal identity info in public GitHub issues. Please redact or blur any sensitive data before posting.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating System / Platform
+      description: Which platform did you experience the issue on?
+      options:
+        - Android
+        - iOS
+        - Web (fundstash.app / split viewer)
+    validations:
+      required: true
+
+  - type: input
+    id: device_info
+    attributes:
+      label: Device & OS Version
+      description: "e.g., Samsung Galaxy S24 (Android 15), iPhone 15 Pro (iOS 18.2), Google Pixel 8 (Android 14)"
+      placeholder: "e.g., iPhone 15 Pro, iOS 18.2"
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: Fundstash App Version
+      description: You can check this in Settings -> About.
+      placeholder: "e.g., 1.0.0 (Build 11)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Bug
+      description: A clear and concise description of what went wrong.
+      placeholder: "When I opened the budget screen while the keyboard was open..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Steps to Reproduce
+      description: Specific steps to reproduce the issue.
+      value: |
+        1. Open '...'
+        2. Tap on '...'
+        3. Observe '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen instead?
+      placeholder: "The view should smoothly scroll to allow tapping the action button."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai_engine
+    attributes:
+      label: On-Device AI Engine (if relevant)
+      description: Which AI configuration was active when the issue occurred?
+      options:
+        - Not related to AI
+        - AI Disabled / None
+        - Gemini Nano (Android AICore)
+        - Apple Intelligence (iOS)
+        - Local Qwen 0.6B (Downloaded on-device model)
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or Screen Recordings
+      description: Drag and drop screenshots or screen recordings here. Ensure all account numbers, balances, or private details are blacked out or masked.
+    validations:
+      required: false

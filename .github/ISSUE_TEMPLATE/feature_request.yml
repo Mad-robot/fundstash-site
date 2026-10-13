@@ -1,0 +1,65 @@
+name: "💡 Feature Request"
+description: Propose an idea, feature, or enhancement for Fundstash
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Share an Idea or Feature Request
+        Thank you for helping shape the future of Fundstash! 
+        Remember that Fundstash is strictly a **zero-cloud, 100% on-device** application. Feature proposals should align with local-first, privacy-respecting design principles.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Area
+      description: What part of Fundstash does your suggestion relate to?
+      options:
+        - Budgeting & Categories
+        - SMS & Automatic Sync
+        - On-Device AI / LLM Intelligence
+        - Receipt & Invoice Scanning (OCR)
+        - Analytics, Charts & Reports
+        - Accounts & Currencies
+        - Debts, IOUs & Bill Splitting
+        - Widgets & OS Integration
+        - Data Backup, Export & Import
+        - UI / UX / Accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear description of the pain point or problem you're experiencing.
+      placeholder: "I find it challenging to track recurring monthly subscriptions that vary in amount..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution / Feature
+      description: A clear and concise description of what you would like Fundstash to do.
+      placeholder: "Add a recurring transaction detector that groups repeating payments and flags renewal dates..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: Alternatives or Workarounds Considered
+      description: Any alternative solutions, manual workflows, or external tools you have tried.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context or Mockups
+      description: Add any mockups, screenshots, or examples that help illustrate the idea.
+    validations:
+      required: false

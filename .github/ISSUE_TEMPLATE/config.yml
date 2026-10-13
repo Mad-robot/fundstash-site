@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Fundstash Website
+    url: https://fundstash.app
+    about: Official homepage, feature walkthrough, and app information.
+  - name: Support & FAQ
+    url: https://fundstash.app/support/
+    about: Read answers to frequently asked questions and troubleshooting steps.
+  - name: Privacy Policy
+    url: https://fundstash.app/privacy/
+    about: Details on our 100% on-device, zero-cloud architecture and data policy.
+  - name: Terms of Service
+    url: https://fundstash.app/terms/
+    about: Read the terms of service for Fundstash.
