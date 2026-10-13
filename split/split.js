@@ -19,7 +19,7 @@
       }
       if (!raw || raw.v !== 1 || typeof raw.id !== 'string' || !Array.isArray(raw.people) || raw.people.length < 2) return null;
       var total = Number(raw.total);
-      if (!(total >= 0) || total > 1e9) return null;
+      if (!(total >= 0) || total > 1e15) return null;
       var people = raw.people
         .filter(function (p) { return p && typeof p.id === 'string' && typeof p.name === 'string' && p.name.trim(); })
         // the sender's own row is called "You" in the app; for the friend reading this page that is the sender

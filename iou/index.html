@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shared IOU — Fundstash</title>
+  <meta name="description" content="An IOU reminder shared from Fundstash.">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#05080F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fundstash.app/iou/">
+  <meta property="og:title" content="An IOU reminder from Fundstash">
+  <meta property="og:description" content="Open to see the debt amount and track it in Fundstash.">
+  <meta property="og:image" content="https://fundstash.app/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/js/theme.js"></script>
+  <script src="/iou/iou.js" defer></script>
+</head>
+<body>
+  <header class="nav solid">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/img/icon-96.webp" alt="" width="32" height="32">Fundstash</a>
+      <nav aria-label="Main"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Theme: system (click to change)"><svg class="t-system" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z"/></svg><svg class="t-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg><svg class="t-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><a class="btn btn-primary" href="/#get">Get the app</a></nav>
+    </div>
+  </header>
+  <main class="doc">
+    <div class="eyebrow">IOU Reminder</div>
+    <h1 id="title">Debt & IOU</h1>
+    <div id="iou" aria-live="polite">
+      <p>Loading…</p>
+    </div>
+    <p class="note">This page reads the IOU from the link itself, in your browser. Details after “#” are never sent to any server.</p>
+    <div style="margin-top: 24px;">
+      <a id="open-app-btn" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; text-decoration: none;" href="#">Add to Fundstash App</a>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <span>Tracked with <a href="/">Fundstash</a>, the private expense tracker.</span>
+      <nav aria-label="Footer"><a href="/privacy/">Privacy</a><a href="/support/">Support</a></nav>
+    </div>
+  </footer>
+</body>
+</html>
