@@ -130,6 +130,13 @@ a:hover { text-decoration: underline; }
 .eyebrow::before { content: ''; width: 28px; height: 2px; border-radius: 2px; background: var(--accent); }
 .note { color: var(--muted); font-size: 13px; }
 
+/* "Add to Fundstash App" on the shared split and IOU pages (the CSP allows no inline styles) */
+.add-to-app { margin-top: 24px; }
+.add-to-app .btn { width: 100%; max-width: 320px; justify-content: center; padding: 14px 24px; font-size: 16px; }
+.add-to-app .btn:hover { text-decoration: none; }
+.add-to-app .note { margin-top: 10px; }
+.link-privacy { margin-top: 18px; }
+
 /* ---------- nav ---------- */
 .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background 0.4s var(--ease), border-color 0.4s var(--ease); border-bottom: 1px solid transparent; }
 .nav.scrolled, .nav.solid { background: var(--nav-bg); border-bottom-color: var(--border); }

@@ -12,7 +12,8 @@ Fundstash automates expense tracking directly on the user's smartphone without c
 - **Natural Language Logging**: Rapid conversational text entry ("chai 40", "uber 250") and offline voice transcription.
 - **Dynamic Budgets & Visual Health**: Color-coded budget tracking (<60% green, 60-80% amber, >80% red) with custom categories, emojis, and adaptive layouts across all screen sizes.
 - **Visual Analytics**: Interactive spending breakdown donut chart with dynamic typography, Safe-to-Spend daily metrics, weekly trends, and end-of-month velocity forecasting.
-- **Zero-Knowledge Bill Splitting**: Shares itemized bills via cryptographic URL fragment hashes (`fundstash.app/split/#d=...`) that decode 100% in the recipient's browser without ever sending data to a server.
+- **Private Bill-Split Links**: Shares a bill split as a link (`fundstash.app/split#d=...`). The split rides in the part after `#`, which browsers never send to a server, and the recipient's browser reads it locally. The link is not encrypted, so anyone holding it can read the split.
+- **IOU Reminders**: Shares a single debt the same way (`fundstash.app/iou#d=...`); the recipient can add it to their own ledger.
 - **Multi-Account & Multi-Currency**: Manages bank accounts, credit cards, cash, and digital wallets across 107 currencies with offline ECB exchange rate tables.
 - **Data Sovereignty**: Instant CSV/JSON exports and encrypted full database backups.
 
@@ -21,6 +22,7 @@ Fundstash automates expense tracking directly on the user's smartphone without c
 - [Support & FAQ](https://fundstash.app/support/): Detailed setup guide, bank SMS integration on iPhone and Android, troubleshooting, and Shortcuts automation notification controls.
 - [Privacy Policy](https://fundstash.app/privacy/): Comprehensive zero-cloud, on-device architecture manifesto and data privacy guarantee.
 - [Terms of Service](https://fundstash.app/terms/): Terms of service for personal use.
-- [Zero-Knowledge Bill Splitter](https://fundstash.app/split/): Client-side bill decoder and settlement interface.
-- [GitHub Public Tracker](https://github.com/Mad-robot/fundstash-site): Community issues, bug reports, and bank SMS parsing pattern requests.
+- [Bill Split Viewer](https://fundstash.app/split/): Shows a shared split in the browser, with a button to add it to the app.
+- [IOU Viewer](https://fundstash.app/iou/): Shows a shared IOU reminder in the browser.
+- [Contact](mailto:support@fundstash.app): Bug reports, questions and bank SMS formats the app does not read yet.
 - [Full Technical & Feature Reference](https://fundstash.app/llms-full.txt): Comprehensive deep-dive documentation for AI models and autonomous agents.

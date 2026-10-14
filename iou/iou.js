@@ -11,16 +11,20 @@
       } catch (e) {
         raw = JSON.parse(decodeURIComponent(param));
       }
-      if (!raw || raw.v !== 1 || typeof raw.senderName !== 'string' || typeof raw.amount !== 'number' || raw.amount <= 0) return null;
+      // same checks as the app (src/services/debt-link.ts)
+      if (!raw || raw.v !== 1 || typeof raw.id !== 'string' || !raw.id.trim()) return null;
+      if (typeof raw.senderName !== 'string' || !raw.senderName.trim()) return null;
+      if (typeof raw.amount !== 'number' || !isFinite(raw.amount) || raw.amount <= 0 || raw.amount > 1e15) return null;
+      var due = typeof raw.dueDate === 'string' && raw.dueDate.length <= 40 && isFinite(Date.parse(raw.dueDate)) ? raw.dueDate : undefined;
       return {
-        id: String(raw.id || '').slice(0, 40),
+        id: raw.id.trim().slice(0, 40),
         senderName: String(raw.senderName).slice(0, 40),
         recipientName: String(raw.recipientName || 'You').slice(0, 40),
         amount: Number(raw.amount),
         currency: typeof raw.currency === 'string' && /^[A-Z]{3}$/.test(raw.currency) ? raw.currency : 'INR',
         description: typeof raw.description === 'string' ? String(raw.description).slice(0, 100) : '',
         type: raw.type === 'borrowed' ? 'borrowed' : 'lent',
-        dueDate: typeof raw.dueDate === 'string' ? String(raw.dueDate).slice(0, 40) : undefined,
+        dueDate: due,
       };
     } catch (e) {
       return null;
@@ -46,13 +50,14 @@
     var root = document.getElementById('iou');
     var title = document.getElementById('title');
     var openBtn = document.getElementById('open-app-btn');
+    var box = document.querySelector('.add-to-app');
     var param = new URLSearchParams(location.hash.replace(/^#/, '')).get('d');
     var d = decodeDebt(param);
     root.textContent = '';
 
     if (!d) {
       root.appendChild(el('p', null, 'This link does not contain a valid IOU. Ask your friend to share it again from Fundstash.'));
-      if (openBtn) openBtn.style.display = 'none';
+      if (box) box.hidden = true;
       return;
     }
 
@@ -88,7 +93,7 @@
         dueDate: d.dueDate,
       }));
       openBtn.href = 'fundstash://debts?import=' + appPayload;
-      openBtn.style.display = 'inline-block';
+      if (box) box.hidden = false;
     }
   }
 

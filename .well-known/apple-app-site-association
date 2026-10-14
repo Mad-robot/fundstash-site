@@ -5,7 +5,9 @@
         "appIDs": ["4RK6YA795V.com.fundstash.app", "A64L3W4N5M.com.fundstash.app"],
         "components": [
           { "/": "/split", "comment": "Shared bill splits open in the app" },
-          { "/": "/split/", "comment": "Shared bill splits open in the app" }
+          { "/": "/split/", "comment": "Shared bill splits open in the app" },
+          { "/": "/iou", "comment": "Shared IOU reminders open in the app" },
+          { "/": "/iou/", "comment": "Shared IOU reminders open in the app" }
         ]
       }
     ]

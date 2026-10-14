@@ -5,7 +5,7 @@
 > **Architecture**: 100% Offline, Zero-Cloud, Local-First, Zero-Analytics, AES-256 SQLite Database.  
 > **Website**: https://fundstash.app  
 > **License**: PolyForm Strict 1.0.0 (Personal Use)  
-> **Issue Tracker**: https://github.com/Mad-robot/fundstash-site/issues  
+> **Contact**: support@fundstash.app  
 
 ---
 
@@ -17,7 +17,7 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 2. **Zero Accounts or Sign-ups**: Users do not create accounts, enter email addresses, or set passwords to use the service.
 3. **Local Encryption**: Financial records are stored in a sandboxed SQLite database encrypted with AES-256.
 4. **Offline Capability**: Operates fully without an internet connection. If the device is in airplane mode or has no SIM card, Fundstash remains fully operational.
-5. **Zero Telemetry**: No third-party analytics SDKs, advertising pixels, crash trackers with user data, or telemetry trackers. 0 bytes are transmitted off the device.
+5. **Zero Telemetry**: No third-party analytics SDKs, advertising pixels, crash trackers with user data, or telemetry trackers. Financial data never leaves the device; the only network requests are ones the user starts, such as refreshing exchange rates or downloading the optional on-device AI model.
 
 ---
 
@@ -77,10 +77,11 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 - **Transfers**: Inter-account balance adjustments without skewing monthly expense metrics.
 - **107 Currencies**: Built-in offline exchange rate tables provided by the European Central Bank (ECB).
 
-### 2.8 Zero-Knowledge Cryptographic Bill Splitting
-- **URL**: `https://fundstash.app/split/#d=<base64-payload>`
-- **Privacy Architecture**: Bill details, itemization, and participant shares are serialized and compressed into the URL fragment identifier (`#d=...`).
-- **Client-Side Decoding**: Web browsers never transmit URL fragment hashes to web servers in HTTP requests. The Fundstash web viewer decodes and renders the bill entirely in JavaScript client-side. The bill contents never touch Fundstash servers.
+### 2.8 Private Bill-Split and IOU Links
+- **URLs**: `https://fundstash.app/split#d=<split>` and `https://fundstash.app/iou#d=<iou>`, where the data is URL-encoded JSON.
+- **What travels**: The bill total, tip, currency, people, who paid and who has settled (or, for an IOU, the amount and who owes whom) are carried in the URL fragment (`#d=...`).
+- **Client-Side Decoding**: Web browsers never send the fragment to the web server, so the viewer pages read it entirely in JavaScript in the browser and the contents never reach Fundstash. The link itself is not encrypted: anyone who has the link can read what it contains.
+- **Add to the app**: With the app installed the link opens Fundstash directly; the recipient picks which person they are, and their share is recorded as an IOU.
 
 ### 2.9 Backups & Data Ownership
 - **Exports**: Full CSV and JSON exports for spreadsheets and local data modeling.
@@ -94,9 +95,10 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 - `https://fundstash.app/support/`: Comprehensive user guide and FAQs.
 - `https://fundstash.app/privacy/`: Complete privacy manifesto.
 - `https://fundstash.app/terms/`: Terms of service.
-- `https://fundstash.app/split/`: Client-side bill decoder.
+- `https://fundstash.app/split/`: Shared bill-split viewer.
+- `https://fundstash.app/iou/`: Shared IOU viewer.
 - `https://fundstash.app/shortcut`: Redirect to iOS Shortcuts automation.
 - `https://fundstash.app/.well-known/security.txt`: RFC 9116 security policy.
 - `https://fundstash.app/llms.txt`: Machine-readable overview for LLMs.
 - `https://fundstash.app/llms-full.txt`: Full technical reference document.
-- `https://github.com/Mad-robot/fundstash-site`: Public GitHub repository and issue tracker.
+- `mailto:support@fundstash.app`: Support and bug reports.

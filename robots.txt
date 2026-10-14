@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /split/
+Disallow: /iou/
 
 # Sitemaps and Machine Metadata
 Sitemap: https://fundstash.app/sitemap.xml
