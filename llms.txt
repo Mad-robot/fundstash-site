@@ -1,9 +1,9 @@
 # Fundstash
 
-> Fundstash is a 100% private, on-device personal finance and expense tracking application for iOS and Android. It operates with zero cloud infrastructure, zero user accounts, and zero telemetry or analytics, saving all financial data locally in an AES-256 encrypted SQLite database.
+> Fundstash is a 100% private, on-device personal finance and expense tracking application for iOS and Android. It operates with zero cloud infrastructure, zero user accounts, and no advertising, analytics or tracking SDKs of its own, saving all financial data locally in an AES-256 encrypted SQLite database.
 
 ## Overview
-Fundstash automates expense tracking directly on the user's smartphone without connecting to external banking aggregator APIs. It combines instant background SMS transaction parsing, local on-device machine learning (Apple Intelligence, Gemini Nano on Android AICore, or local Qwen 0.6B GGUF via llama.cpp), receipt OCR, conversational expense entry, dynamic budgeting, and deep spending analytics.
+Fundstash automates expense tracking directly on the user's smartphone without connecting to external banking aggregator APIs. It combines instant background SMS transaction parsing, local on-device machine learning (Apple Intelligence, Gemini Nano on Android AICore, or a downloadable SmolLM2 135M or Qwen3 0.6B GGUF model via llama.cpp), receipt OCR, conversational expense entry, dynamic budgeting, and deep spending analytics.
 
 ## Core Capabilities
 - **Automated Bank SMS Sync**: Captures and parses transaction alert SMS messages in real-time on Android (native background listener) and iOS (Shortcuts automation). Extracts amounts, currencies, merchant names, payment modes, and account references.
@@ -22,6 +22,7 @@ Fundstash automates expense tracking directly on the user's smartphone without c
 - [Support & FAQ](https://fundstash.app/support/): Detailed setup guide, bank SMS integration on iPhone and Android, troubleshooting, and Shortcuts automation notification controls.
 - [Privacy Policy](https://fundstash.app/privacy/): Comprehensive zero-cloud, on-device architecture manifesto and data privacy guarantee.
 - [Terms of Service](https://fundstash.app/terms/): Terms of service for personal use.
+- [Beta](https://fundstash.app/beta/): How to join the pre-launch beta on iPhone (TestFlight) and Android (Google Play testing).
 - [Bill Split Viewer](https://fundstash.app/split/): Shows a shared split in the browser, with a button to add it to the app.
 - [IOU Viewer](https://fundstash.app/iou/): Shows a shared IOU reminder in the browser.
 - [Contact](mailto:support@fundstash.app): Bug reports, questions and bank SMS formats the app does not read yet.

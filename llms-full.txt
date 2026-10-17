@@ -2,7 +2,7 @@
 
 > **Tagline**: Your funds, stashed locally.  
 > **Platforms**: iOS (Apple Intelligence, iOS Shortcuts) & Android (Android AICore, Gemini Nano, Background SMS Receiver).  
-> **Architecture**: 100% Offline, Zero-Cloud, Local-First, Zero-Analytics, AES-256 SQLite Database.  
+> **Architecture**: 100% Offline, Zero-Cloud, Local-First, No Ads or Tracking, AES-256 SQLite Database.  
 > **Website**: https://fundstash.app  
 > **License**: PolyForm Strict 1.0.0 (Personal Use)  
 > **Contact**: support@fundstash.app  
@@ -17,7 +17,7 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 2. **Zero Accounts or Sign-ups**: Users do not create accounts, enter email addresses, or set passwords to use the service.
 3. **Local Encryption**: Financial records are stored in a sandboxed SQLite database encrypted with AES-256.
 4. **Offline Capability**: Operates fully without an internet connection. If the device is in airplane mode or has no SIM card, Fundstash remains fully operational.
-5. **Zero Telemetry**: No third-party analytics SDKs, advertising pixels, crash trackers with user data, or telemetry trackers. Financial data never leaves the device; the only network requests are ones the user starts, such as refreshing exchange rates or downloading the optional on-device AI model.
+5. **No Tracking**: No advertising, analytics or tracking SDKs of its own. Financial data never leaves the device. The app's own network requests are ones the user starts: refreshing exchange rates (open.er-api.com) or downloading an optional on-device model from Hugging Face. On Android, Google ML Kit (receipt text recognition and Gemini Nano) sends Google technical diagnostics such as device and app info, performance data and an installation identifier, without user content; see https://fundstash.app/privacy/.
 
 ---
 
@@ -40,7 +40,7 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 - **Supported Engines**:
   - **Android**: Android AICore / Gemini Nano on compatible devices.
   - **iOS**: Apple Intelligence foundation models on compatible iPhones.
-  - **Universal Fallback**: Compact open-weights model (**Qwen 0.6B GGUF**) running locally via embedded `llama.cpp`. Downloaded once into persistent application document storage (`FileSystem.documentDirectory`), remaining untouched across application updates.
+  - **Universal Fallback**: Compact open-weights model (**SmolLM2 135M, about 145 MB, or Qwen3 0.6B, about 400 MB, GGUF**) running locally via embedded `llama.cpp`. Downloaded once into persistent application document storage (`FileSystem.documentDirectory`), remaining untouched across application updates.
 - **Paced Batch Review**: Background transactions are analyzed in gentle batches of 5 with throttle intervals (1.2s delay between batches). This prevents CPU overheating, battery drain, and UI stutter.
 - **Capabilities**:
   - Normalizes cryptic billing descriptions (e.g., `POS 491290 XFR` -> clean merchant name).
@@ -95,6 +95,7 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 - `https://fundstash.app/support/`: Comprehensive user guide and FAQs.
 - `https://fundstash.app/privacy/`: Complete privacy manifesto.
 - `https://fundstash.app/terms/`: Terms of service.
+- `https://fundstash.app/beta/`: How to join the pre-launch beta (TestFlight and Google Play testing).
 - `https://fundstash.app/split/`: Shared bill-split viewer.
 - `https://fundstash.app/iou/`: Shared IOU viewer.
 - `https://fundstash.app/shortcut`: Redirect to iOS Shortcuts automation.
