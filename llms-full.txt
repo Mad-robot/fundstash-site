@@ -2,7 +2,7 @@
 
 > **Tagline**: Your funds, stashed locally.  
 > **Platforms**: iOS (Apple Intelligence, iOS Shortcuts) & Android (Android AICore, Gemini Nano, Background SMS Receiver).  
-> **Architecture**: 100% Offline, Zero-Cloud, Local-First, No Ads or Tracking, AES-256 SQLite Database.  
+> **Architecture**: Offline-first (internet only to refresh exchange rates or download an AI model), Zero-Cloud, Local-First, No Ads or Tracking, AES-256 SQLite Database.  
 > **Website**: https://fundstash.app  
 > **License**: PolyForm Strict 1.0.0 (Personal Use)  
 > **Contact**: support@fundstash.app  
@@ -17,7 +17,7 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 2. **Zero Accounts or Sign-ups**: Users do not create accounts, enter email addresses, or set passwords to use the service.
 3. **Local Encryption**: Financial records are stored in a sandboxed SQLite database encrypted with AES-256.
 4. **Offline Capability**: Operates fully without an internet connection. If the device is in airplane mode or has no SIM card, Fundstash remains fully operational.
-5. **No Tracking**: No advertising, analytics or tracking SDKs of its own. Financial data never leaves the device. The app's own network requests are ones the user starts: refreshing exchange rates (open.er-api.com) or downloading an optional on-device model from Hugging Face. On Android, Google ML Kit (receipt text recognition and Gemini Nano) sends Google technical diagnostics such as device and app info, performance data and an installation identifier, without user content; see https://fundstash.app/privacy/.
+5. **No Tracking**: No advertising, analytics or tracking SDKs of its own. Your transactions and messages never leave your phone. The internet is used only if you choose to refresh exchange rates or download an AI model. Those two requests go to open.er-api.com (exchange rates) and Hugging Face (optional on-device model). On Android, Google ML Kit (receipt text recognition and Gemini Nano) sends Google technical diagnostics such as device and app info, performance data and an installation identifier, without user content; see https://fundstash.app/privacy/.
 
 ---
 
@@ -25,7 +25,7 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 
 ### 2.1 Automated Bank & Card SMS Sync
 - **Mechanism**: Captures financial transaction alert SMS messages in real-time.
-  - **Android**: Utilizes a native background SMS broadcast listener (with user SMS permission) to parse messages immediately upon arrival.
+  - **Android**: Utilizes a native background SMS broadcast listener (with user SMS permission) to parse messages immediately upon arrival. Some banks now send alerts as RCS chats instead of SMS; with the optional "Read bank notifications" setting, Fundstash also reads the title and text of messaging-app notifications on the phone so those alerts are recorded too. Nothing leaves the phone.
   - **iOS**: Utilizes a zero-cloud Apple Shortcuts automation that forwards incoming transaction messages to Fundstash on-device.
 - **Heuristic Parsing Engine**: High-performance local regular expressions identify:
   - Transaction amounts and currency symbols (₹, $, €, £, and 100+ others).

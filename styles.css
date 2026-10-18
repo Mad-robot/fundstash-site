@@ -129,6 +129,7 @@ a:hover { text-decoration: underline; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); font-size: 12px; font-weight: 700; }
 .eyebrow::before { content: ''; width: 28px; height: 2px; border-radius: 2px; background: var(--accent); }
 .note { color: var(--muted); font-size: 13px; }
+.cta-note { margin: 14px 0 0; }
 
 /* "Add to Fundstash App" on the shared split and IOU pages (the CSP allows no inline styles) */
 .add-to-app { margin-top: 24px; }
@@ -176,7 +177,7 @@ html:not([data-theme-choice]) .theme-toggle .t-system, [data-theme-choice="syste
 #scene.ready { opacity: 1; }
 .hero .wrap { position: relative; padding-top: 110px; padding-bottom: 80px; }
 .hero-copy { max-width: 700px; }
-.hero h1 { font-size: clamp(40px, min(6.2vw, 10vh), 84px); line-height: 0.98; letter-spacing: -0.045em; font-weight: 850; margin: 22px 0 22px; }
+.hero h1 { font-size: clamp(40px, min(6.2vw, 7.5vh), 84px); line-height: 0.98; letter-spacing: -0.045em; font-weight: 850; margin: 22px 0 22px; }
 .hero h1 .line { display: block; overflow: hidden; padding-bottom: 0.06em; }
 .hero h1 .line > span { display: inline-block; will-change: transform; }
 .lead { font-size: clamp(17px, 1.6vw, 20px); color: var(--text-2); max-width: 520px; margin: 0 0 32px; }
