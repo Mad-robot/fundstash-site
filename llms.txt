@@ -1,6 +1,6 @@
 # Fundstash
 
-> Fundstash is a 100% private, on-device personal finance and expense tracking application for iOS and Android. It operates with zero cloud infrastructure, zero user accounts, and no advertising, analytics or tracking SDKs of its own, saving all financial data locally in an AES-256 encrypted SQLite database. Your transactions and messages never leave your phone. The internet is used only if you choose to refresh exchange rates or download an AI model.
+> Fundstash is a 100% private, on-device personal finance and expense tracking application for iOS and Android. It operates with zero cloud infrastructure, zero user accounts, and no advertising, analytics or tracking SDKs of its own, saving all financial data locally in an AES-256 encrypted SQLite database. Your transactions and messages never leave your phone. Fundstash itself goes online only if you choose to refresh exchange rates or download an AI model.
 
 ## Overview
 Fundstash automates expense tracking directly on the user's smartphone without connecting to external banking aggregator APIs. It combines instant background SMS transaction parsing, local on-device machine learning (Apple Intelligence, Gemini Nano on Android AICore, or a downloadable SmolLM2 135M or Qwen3 0.6B GGUF model via llama.cpp), receipt OCR, conversational expense entry, dynamic budgeting, and deep spending analytics.

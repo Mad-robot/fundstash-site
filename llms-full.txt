@@ -17,7 +17,7 @@ Fundstash is an automated personal finance manager engineered to run entirely on
 2. **Zero Accounts or Sign-ups**: Users do not create accounts, enter email addresses, or set passwords to use the service.
 3. **Local Encryption**: Financial records are stored in a sandboxed SQLite database encrypted with AES-256.
 4. **Offline Capability**: Operates fully without an internet connection. If the device is in airplane mode or has no SIM card, Fundstash remains fully operational.
-5. **No Tracking**: No advertising, analytics or tracking SDKs of its own. Your transactions and messages never leave your phone. The internet is used only if you choose to refresh exchange rates or download an AI model. Those two requests go to open.er-api.com (exchange rates) and Hugging Face (optional on-device model). On Android, Google ML Kit (receipt text recognition and Gemini Nano) sends Google technical diagnostics such as device and app info, performance data and an installation identifier, without user content; see https://fundstash.app/privacy/.
+5. **No Tracking**: No advertising, analytics or tracking SDKs of its own. Your transactions and messages never leave your phone. Fundstash itself goes online only if you choose to refresh exchange rates or download an AI model. Those two requests go to open.er-api.com (exchange rates) and Hugging Face (optional on-device model). On Android, Google ML Kit (receipt text recognition and Gemini Nano) sends Google technical diagnostics such as device and app info, performance data and an installation identifier, without user content; see https://fundstash.app/privacy/.
 
 ---
 

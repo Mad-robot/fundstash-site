@@ -25,7 +25,7 @@ Modern financial tools demand too many privacy compromises: banking passwords, e
 
 Fundstash takes the opposite approach:
 
-* **Your Ledger Stays on Your Phone**: Your transactions and messages never leave your phone. The internet is used only if you choose to refresh exchange rates or download an AI model. No remote servers, no syncing to third-party clouds, no central database.
+* **Your Ledger Stays on Your Phone**: Your transactions and messages never leave your phone. Fundstash itself goes online only if you choose to refresh exchange rates or download an AI model. No remote servers, no syncing to third-party clouds, no central database.
 * **No Accounts or Sign-ups**: No email addresses, phone numbers, social logins, or passwords required. Open the app and begin tracking immediately.
 * **Works Offline**: Fundstash operates without an active internet connection. All calculations, categorizations, reports, and searches are performed on-device.
 * **No Ads & No Tracking**: No advertising, analytics or tracking SDKs of our own. Google ML Kit (receipt text recognition, and Gemini Nano on Android) sends Google technical diagnostics; see the privacy policy.
